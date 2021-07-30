@@ -3,7 +3,7 @@ from django.db import models
 from datetime import datetime, timedelta
 
 class Post(models.Model):
-    pub_date = models.DateTimeField("Data de publicação", default=datetime.now() + timedelta(hours=1))
+    pub_date = models.DateTimeField("Data de publicação")
     title = models.CharField("Título", max_length=50)
     text = models.TextField("Texto")
 
