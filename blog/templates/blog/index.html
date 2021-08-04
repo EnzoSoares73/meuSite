@@ -1,7 +1,15 @@
+{% extends "base.html" %}
+
+{% block styles %}
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css" media="screen"/>
+{% endblock %}
+
 <h1>{{ welcome_msg }}</h1>
 
-<ul>
-    {% for post in lista_blog_posts %}
-        <li><a href="{% url 'blog:post' post.id %}">{{post.title}}</a></li>
-    {% endfor %}
-</ul>
+{% block content %}
+    <ul>
+        {% for post in lista_blog_posts %}
+            <li><a href="{% url 'blog:post' post.id %}">{{post.title}}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

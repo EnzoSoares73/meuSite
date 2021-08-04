@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="author" content="Enzo Soares">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="{% block description %}Blog, trabalho, programação{% endblock %}">
+        <meta name="keywords" content="{% block keywords %}Blog, trabalho, programação, Django, Python{% endblock %}">
+        <title>{% block title %}Site Pessoal de Enzo Soares{% endblock %}</title>
+
+        <link rel="stylesheet" type="text/css" href="{% static "../static/css/style.css" %}" media="screen"/>
+
+        {% block stylesheets %}
+        {% endblock %}
+
+        {% block scripts %}
+        {% endblock %}
+    </head>
+
+    <body>
+        <ul class="hlist">
+            {% block toolbar %}
+                <li><a href="">Home</a></li>
+                <li><a href="">Blog</a></li>
+                <li><a href="">Sobre mim</a></li>
+                <li><a href="">Contato</a></li>
+            {% endblock %}
+        </ul>
+
+        {% block content %}
+        {% endblock %}
+    </body>
+</html>
