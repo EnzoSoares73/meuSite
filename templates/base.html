@@ -12,10 +12,6 @@
         <link rel="stylesheet" type="text/css" href="{% static "../static/css/style.css" %}" media="screen"/>
         <link rel="stylesheet" type="text/css" href="{% static "../static/css/link.css" %}" media="screen"/>
 
-        <style>
-
-        </style>
-
         {% block stylesheets %}
         {% endblock %}
 
@@ -28,8 +24,8 @@
             <div class="center">
                 <ul class="hlist">
                     {% block toolbar %}
-                        <li class="lista"><a href="" class="link">Home</a></li>
-                        <li class="lista"><a href="" class="link">Blog</a></li>
+                        <li class="lista"><a href="{% url "authentication:home" %}" class="link">Home</a></li>
+                        <li class="lista"><a href="{% url "blog:index" %}" class="link">Blog</a></li>
                         <li class="lista"><a href="" class="link">Sobre mim</a></li>
                         <li class="lista"><a href="" class="link">Contato</a></li>
                     {% endblock %}

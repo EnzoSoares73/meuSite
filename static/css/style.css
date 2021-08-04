@@ -15,6 +15,14 @@ html, body {
     width: 93%;
     height: 86%;
 }
+.center1 {
+    margin: 0;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
 
 .scrollbox {
     width:93%;
@@ -67,4 +75,9 @@ ul {
 li.lista {
     float: right;
     margin: 8px;
+}
+
+.orange-text {
+    font-size: 60px;
+    color: orange;
 }
