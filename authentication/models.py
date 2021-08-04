@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
+    about = models.TextField("Sobre")
     linkedin = models.CharField(max_length=50)
     ddd = models.CharField("DDD", max_length=2)
     cellphone = models.CharField("Número de telefone", max_length=10)

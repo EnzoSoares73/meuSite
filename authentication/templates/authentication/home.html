@@ -36,5 +36,36 @@
                 </div>
                 <a href="{% url 'blog:post' post2.id %}" class="link" style="font-size: 20px">Continuar a ler</a>
             </div>
+
         </div>
+
+
+        <div class="empty100"></div>
+        <div class="empty100"></div>
+        <div class="empty100"></div>
+
+
+
+
+
+        <h1 class="lessatention">Sobre mim</h1>
+        <div class="container">
+            <div class="leftpane" style="width: 60%">
+                <div class="blog-post">
+                    {{ user.about }}
+                </div>
+            </div>
+            <div class="rightpane" style="width: 30%">
+                <div class="blog-post">
+                    {{ post2.text }}
+                </div>
+            </div>
+
+        </div>
+
+        <a href="" class="link" style="font-size: 20px">Aprenda mais sobre mim</a>
+
+        <div class="empty100"></div>
+        <div class="empty100"></div>
+        <div class="empty100"></div>
     {% endblock %}
