@@ -10,6 +10,11 @@
         <title>{% block title %}Site Pessoal de Enzo Soares{% endblock %}</title>
 
         <link rel="stylesheet" type="text/css" href="{% static "../static/css/style.css" %}" media="screen"/>
+        <link rel="stylesheet" type="text/css" href="{% static "../static/css/link.css" %}" media="screen"/>
+
+        <style>
+
+        </style>
 
         {% block stylesheets %}
         {% endblock %}
@@ -19,16 +24,25 @@
     </head>
 
     <body>
-        <ul class="hlist">
-            {% block toolbar %}
-                <li><a href="">Home</a></li>
-                <li><a href="">Blog</a></li>
-                <li><a href="">Sobre mim</a></li>
-                <li><a href="">Contato</a></li>
-            {% endblock %}
-        </ul>
+        <div class="full-height">
+            <div class="center">
+                <ul class="hlist">
+                    {% block toolbar %}
+                        <li class="lista"><a href="" class="link">Home</a></li>
+                        <li class="lista"><a href="" class="link">Blog</a></li>
+                        <li class="lista"><a href="" class="link">Sobre mim</a></li>
+                        <li class="lista"><a href="" class="link">Contato</a></li>
+                    {% endblock %}
+                </ul>
 
-        {% block content %}
-        {% endblock %}
+                <div class="scrollbox">
+
+
+                    {% block content %}
+                    {% endblock %}
+
+                </div>
+            </div>
+        </div>
     </body>
 </html>

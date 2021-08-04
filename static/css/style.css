@@ -1,7 +1,70 @@
+html, body {
+    height: 98%;
+    margin: 0;
+    background-color: orange;
+}
+
+.center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 5px solid ghostwhite;
+    background-color: ghostwhite;
+    padding: 10px;
+    width: 93%;
+    height: 86%;
+}
+
+.scrollbox {
+    width:93%;
+    height: 75%;
+    line-height:3em;
+    overflow-y: scroll;
+    margin: 0 auto;
+    padding:5px;
+    left: 50%;
+    top: 330px;
+    transform: translate(-50%, -50%);
+    position: absolute;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: navajowhite;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: orange;
+}
+
 .hlist {
     display: flex;
+    top: 20px;
+    right: 50px;
+    position: absolute
 }
 .hlist li {
     list-style-type: none;
     color: aqua;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+li.lista {
+    float: right;
+    margin: 8px;
 }
