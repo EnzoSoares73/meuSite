@@ -6,7 +6,7 @@ from authentication.models import User
 
 def home(request):
     num_blog_posts = 2
-    lista_blog_posts = Post.objects.order_by('-pub_date')[:num_blog_posts]
+    lista_blog_posts = Post.return_published_posts(num=num_blog_posts)
     post1 = lista_blog_posts[0]
     post2 = lista_blog_posts[1]
     user = User.objects.get(username="EnzoSoares")

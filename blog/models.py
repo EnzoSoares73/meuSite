@@ -14,7 +14,8 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
-    def return_published_posts(self, num=None):
+    @classmethod
+    def return_published_posts(cls, num=None):
         lista_blog_posts = []
         for post in Post.objects.order_by('-pub_date'):
             if post.time_to_be_published() == "Já publicado":

@@ -37,9 +37,10 @@ html, body {
 .blog-post {
     width: 90%;
     height: 143px;
-    overflow-y: hidden;
+    overflow: hidden;
     line-height: 100%;
     font-size: 20px;
+    text-overflow: ellipsis;
 }
 
 ::-webkit-scrollbar {
