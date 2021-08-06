@@ -2,14 +2,26 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from datetime import datetime, timedelta, timezone
 
+from authentication.models import User
+
 
 class Post(models.Model):
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     pub_date = models.DateTimeField("Data de publicação")
     title = models.CharField("Título", max_length=50)
     text = models.TextField("Texto")
 
     def __str__(self):
         return self.title
+
+    def return_published_posts(self, num=None):
+        lista_blog_posts = []
+        for post in Post.objects.order_by('-pub_date'):
+            if post.time_to_be_published() == "Já publicado":
+                lista_blog_posts.append(post)
+        if num is None:
+            num = len(lista_blog_posts)
+        return lista_blog_posts[:num]
 
     def time_to_be_published(self):
         if self.pub_date > datetime.now(timezone(timedelta(hours=-3))):

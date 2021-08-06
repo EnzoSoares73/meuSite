@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from authentication import validators
 
 class User(AbstractUser):
     about = models.TextField("Sobre")
@@ -11,3 +12,11 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.first_name + ' ' + self.last_name
+
+class Skill(models.Model):
+    name = models.CharField("nome", max_length=20)
+    proficiency = models.IntegerField("proeficiência", validators=[validators.validate_range])
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
