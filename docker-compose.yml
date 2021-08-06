@@ -1,0 +1,21 @@
+version: "3.9"
+services:
+    db:
+        image: mysql:5.7
+        ports:
+            - '3307:3306'
+        environment:
+            MYSQL_DATABASE: 'meu_site'
+            MYSQL_USER: 'enzos'
+            MYSQL_PASSWORD: 'L+)Fpt;"+4E(W7Pw'
+            MYSQL_ROOT_PASSWORD: 'L+)Fpt;"+4E(W7Pw'
+
+    web:
+        build: .
+        command: python manage.py runserver 0.0.0.0:8000
+        volumes:
+            - .:/app
+        ports:
+            - "8000:8000"
+        depends_on:
+            - db

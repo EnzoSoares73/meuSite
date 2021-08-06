@@ -19,13 +19,22 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
+f = open('.env.dev', 'r')
+newDict = {}
+for line in f:
+    listedline = line.strip().split('=')
+    if len(listedline) > 1:
+        newDict[listedline[0]] = listedline[1]
+
+os.environ.update(newDict)
+
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-ns&ma4*2syuuq+z3l3^bu--os9gssamv(7z1g=gzdhi4fs-9h!'
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = int(os.environ.get("DEBUG", default=0))
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
 
 
 # Application definition
@@ -77,8 +86,13 @@ WSGI_APPLICATION = 'meuSite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'meu_site',
+        'USER': 'enzos',
+        'PASSWORD': 'L+)Fpt;"+4E(W7Pw',
+        'HOST': 'db',   # Name of the db service in docker-compose.yml
+        'PORT': '3306',
+
     }
 }
 
