@@ -5,6 +5,7 @@ from authentication import validators
 class User(AbstractUser):
     about = models.TextField("Sobre")
     linkedin = models.CharField(max_length=50)
+    facebook = models.CharField(max_length=50)
     ddd = models.CharField("DDD", max_length=2)
     cellphone = models.CharField("Número de telefone", max_length=10)
     cv = models.FileField("Currículo")
