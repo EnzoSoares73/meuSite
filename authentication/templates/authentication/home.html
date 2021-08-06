@@ -1,9 +1,16 @@
 {% extends "base.html" %}
     {% load static %}
+
     {% block stylesheets%}
         <link rel="stylesheet" type="text/css" href="{% static "../static/css/animation.css" %}" media="screen"/>
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/font-awesome.min.css">
     {% endblock %}
+
+    {% block scripts %}
+        <script src="https://kit.fontawesome.com/d821bb9b77.js" crossorigin="anonymous"></script>
+    {% endblock %}
+
     {% block content %}
 
         <div class="empty100"></div>
@@ -15,6 +22,7 @@
             <h1>Desenvolvedor WEB</h1>
         </div>
 
+        <div class="empty100"></div>
         <div class="empty100"></div>
 
         <h1 class="lessatention">Minhas últimas postagens</h1>
@@ -69,6 +77,24 @@
         <a href="" class="link" style="font-size: 20px">Aprenda mais sobre mim</a>
 
         <div class="empty100"></div>
+
+        <h1 class="lessatention">Fale comigo</h1>
+
+
+        <div class="container" style="position:relative">
+            <ul class="hlist" style="left:50px">
+                <li class="lista"><i class="fab fa-facebook-square fa-5x" style="color:orange"></i></li>
+                <li class="lista"><i class="fab fa-linkedin fa-5x" style="color:orange"></i></li>
+                <li class="lista"><i class="fas fa-phone-square-alt fa-5x" style="color:orange"></i></li>
+                <li class="lista"><i class="fas fa-envelope-square fa-5x" style="color:orange"></i></li>
+            </ul>
+        </div>
+
         <div class="empty100"></div>
         <div class="empty100"></div>
+
+        <a href="" class="link" style="font-size: 20px">Me envie uma mensagem</a>
+
+
+
     {% endblock %}
