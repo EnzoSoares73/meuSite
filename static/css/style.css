@@ -36,7 +36,7 @@ html, body {
 
 .blog-post {
     width: 90%;
-    height: 143px;
+    height: fit-content;
     overflow: hidden;
     line-height: 100%;
     font-size: 20px;
