@@ -1,15 +1,16 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-from datetime import datetime, timedelta, timezone
-
+from datetime import datetime, timedelta, timezone, date
 from authentication.models import User
 
+def fixed_date():
+    return datetime.now(timezone(timedelta(hours=-3))) + timedelta(hours=1)
 
 class Post(models.Model):
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    pub_date = models.DateTimeField("Data de publicação")
-    title = models.CharField("Título", max_length=50)
-    text = models.TextField("Texto")
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, default='Anonymous')
+    pub_date = models.DateTimeField("Data de publicação", null=True, default=fixed_date)
+    title = models.CharField("Título", max_length=50, null=True, default='')
+    text = models.TextField("Texto", null=True, default='')
 
     def __str__(self):
         return self.title
@@ -23,6 +24,19 @@ class Post(models.Model):
         if num is None:
             num = len(lista_blog_posts)
         return lista_blog_posts[:num]
+
+    @classmethod
+    def generate_sentinel(cls):
+        return Post.objects.get_or_create(user=User.generate_sentinel(),
+                                          title="Em construção",
+                                          text="Esse post ainda está sendo construído :)",
+                                          pub_date=date(1970, 1, 1))[0]
+    @classmethod
+    def generate_placeholder(cls):
+        return Post(user=User.generate_placeholder(),
+                    title="Em construção",
+                    text="Esse post ainda está sendo construído :)",
+                    pub_date=date(1970, 1, 1))
 
     def time_to_be_published(self):
         if self.pub_date > datetime.now(timezone(timedelta(hours=-3))):

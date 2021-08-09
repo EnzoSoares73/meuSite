@@ -10,3 +10,4 @@ class UserAdmin(admin.ModelAdmin):
     inlines = [SkillsInline]
 
 admin.site.register(User, UserAdmin)
+admin.site.register(Skill)
