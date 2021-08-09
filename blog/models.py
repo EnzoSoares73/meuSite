@@ -6,8 +6,11 @@ from authentication.models import User
 def fixed_date():
     return datetime.now(timezone(timedelta(hours=-3))) + timedelta(hours=1)
 
+def get_sentinel_user():
+    return User.generate_sentinel()
+
 class Post(models.Model):
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, default='Anonymous')
+    user = models.ForeignKey(User, on_delete=models.SET(get_sentinel_user), null=True, default='Anonymous')
     pub_date = models.DateTimeField("Data de publicação", null=True, default=fixed_date)
     title = models.CharField("Título", max_length=50, null=True, default='')
     text = models.TextField("Texto", null=True, default='')

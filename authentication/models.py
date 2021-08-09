@@ -1,8 +1,9 @@
-import random
-
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from authentication import validators
+
+def get_sentinel_user():
+    return User.generate_sentinel()
 
 class User(AbstractUser):
     about = models.TextField("Sobre", null=True, default='Uma descrição sobre mim')
@@ -30,7 +31,7 @@ class User(AbstractUser):
 class Skill(models.Model):
     name = models.CharField("nome", max_length=20)
     proficiency = models.IntegerField("proeficiência", validators=[validators.validate_range])
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.SET(get_sentinel_user))
 
     def __str__(self):
         return self.name

@@ -13,7 +13,7 @@ def home(request):
         post1 = lista_blog_posts[0]
     except IndexError:
         post1 = Post.generate_sentinel()
-    post1.title = truncate(post1.title)
+    post1.text = truncate(post1.text)
 
     try:
         post2 = lista_blog_posts[1]
