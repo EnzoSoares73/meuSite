@@ -1,1 +1,1 @@
-docker-compose run web -p 8000:8000 web
+docker-compose run -p 8000:8000 web python3 manage.py runserver
