@@ -1,8 +1,6 @@
 from django.shortcuts import render
-
 from blog.models import Post
 from authentication.models import User
-
 
 def home(request):
     num_blog_posts = 2
