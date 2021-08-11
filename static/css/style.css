@@ -115,11 +115,11 @@ li.lista {
 }
 
 .rightpane {
-  width: 50%;
-  height: 100%;
-  position: relative;
-  float: right;
-  border-collapse: collapse;
+    width: 50%;
+    height: 100%;
+    position: relative;
+    float: right;
+    border-collapse: collapse;
 }
 
 .leftpane1 {
@@ -130,15 +130,24 @@ li.lista {
 }
 
 .rightpane1 {
-  width: 50%;
-  height: 100%;
-  position: relative;
-  float: right;
-  border-collapse: collapse;
+    width: 50%;
+    height: 100%;
+    position: relative;
+    float: right;
+    border-collapse: collapse;
 }
 
 .container {
     width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.item {
+    flex: 0 1 auto;
+    min-width: 0;
+    max-width: 10px;
 }
 
 .blog-title {
