@@ -1,9 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <ul>
+    <div class="container1">
         {% for post in lista_blog_posts %}
-            <li><a href="{% url 'blog:post' post.id %}" class="link">{{post.title}}</a></li>
+            <div class="item1">
+                <a href="{% url 'blog:post' post.id %}" class="link">{{post.title}}</a>
+            </div>
         {% endfor %}
-    </ul>
+    </div>
 {% endblock %}

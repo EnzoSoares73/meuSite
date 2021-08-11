@@ -107,34 +107,9 @@ li.lista {
     background-color: transparent;
 }
 
-.leftpane {
-    width: 50%;
-    height: 100%;
-    float: left;
-    border-collapse: collapse;
-}
-
-.rightpane {
-    width: 50%;
-    height: 100%;
-    position: relative;
-    float: right;
-    border-collapse: collapse;
-}
-
-.leftpane1 {
-    width: 50%;
-    height: 100%;
-    float: left;
-    border-collapse: collapse;
-}
-
-.rightpane1 {
-    width: 50%;
-    height: 100%;
-    position: relative;
-    float: right;
-    border-collapse: collapse;
+.empty50 {
+    height: 100px;
+    background-color: transparent;
 }
 
 .container {
@@ -142,6 +117,13 @@ li.lista {
     display: flex;
     justify-content: space-between;
     flex-direction: row;
+}
+
+.container1 {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
 }
 
 .item1 {
