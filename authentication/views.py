@@ -9,30 +9,19 @@ def home(request):
     num_blog_posts = 2
     lista_blog_posts = Post.return_published_posts(num=num_blog_posts)
 
-    try:
-        post1 = lista_blog_posts[0]
-    except IndexError:
-        post1 = Post.generate_sentinel()
-    post1.text = truncate(post1.text)
-
-    try:
-        post2 = lista_blog_posts[1]
-    except IndexError:
-        post2 = Post.generate_sentinel()
-    post2.text = truncate(post2.text)
+    for post in lista_blog_posts:
+        post.text = truncate(post.text)
 
     try:
         user = User.objects.get(username=os.environ.get("USER"))
     except:
         user = User.generate_sentinel()
-    user.about = truncate(user.about)
 
     if user.skill_set.all().count() == 0:
         Skill.generate_sentinel()
 
     context = {
-        'post1': post1,
-        'post2': post2,
+        'lista_blog_posts': lista_blog_posts,
         'user': user
     }
 
