@@ -3,7 +3,7 @@
 {% block content %}
     <div class="container1">
         {% for post in lista_blog_posts %}
-            <div class="item1">
+            <div class="item1" style="margin-bottom: 20px">
                 <a href="{% url 'blog:post' post.id %}" class="link">{{post.title}}</a>
             </div>
         {% endfor %}

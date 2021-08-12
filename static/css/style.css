@@ -99,7 +99,7 @@ html, body {
 .container1 {
     height: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     flex-direction: column;
 }
 

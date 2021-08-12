@@ -1,8 +1,10 @@
 {% extends "base.html" %}
 
-{% block title %}{{ title }}{% endblock %}
+{% block title %}{{ blog.title }}{% endblock %}
 
 {% block content %}
-    <h3>{{ title }}</h3>
-    <p>{{ text }}</p>
+    <h3>{{ blog.title }}</h3>
+    <p style="line-height: 80%">{{ blog.user }}</p>
+    <p>Publicado em {{ blog.pub_date }}</p>
+    <p>{{ blog.text }}</p>
 {% endblock %}
