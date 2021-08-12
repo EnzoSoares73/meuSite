@@ -26,24 +26,24 @@
         <div class="empty100"></div>
 
         <h1 class="lessatention">Minhas últimas postagens</h1>
-            {% if len.lista_blog_posts != 0 %}
-                <div class="container">
-                    {% for post in lista_blog_posts %}
-                        <div class="item1">
-                            <div class="blog-title">
-                                <a href="{% url 'blog:post' post.id %}" class="link">{{ post.title }}</a>
-                            </div>
-                            <div class="blog-post">
-                                {{post.text}}
-                            </div>
-                            <a href="{% url 'blog:post' post.id %}" class="link" style="font-size: 20px">Continuar a ler</a>
+        <div class="container">
+            {% for post in lista_blog_posts %}
+                    <div class="item1">
+                        <div class="blog-title">
+                            <a href="{% url 'blog:post' post.id %}" class="link">{{ post.title }}</a>
                         </div>
-                    {% endfor %}
+                        <div class="blog-post">
+                            {{post.text}}
+                        </div>
+                        <a href="{% url 'blog:post' post.id %}" class="link" style="font-size: 20px">Continuar a ler</a>
+                    </div>
+            {% empty %}
+                <div class="item1">
+                    <div class="empty100"></div>
+                    <h4 >Ainda não tem nada escrito ;-;</h4>
                 </div>
-            {% else %}
-                <div class="empty100"></div>
-                <h4 >Ainda não tem nada escrito ;-;</h4>
-            {% endif %}
+            {% endfor %}
+        </div>
 
         <div class="empty100"></div>
 
@@ -74,16 +74,13 @@
         <h1 class="lessatention">Fale comigo</h1>
 
 
-        <div class="container" style="position:relative">
-            <ul class="hlist" style="left:50px">
-                <li class="lista"><i class="fab fa-facebook-square fa-5x" style="color:orange"></i></li>
-                <li class="lista"><i class="fab fa-linkedin fa-5x" style="color:orange"></i></li>
-                <li class="lista"><i class="fas fa-phone-square-alt fa-5x" style="color:orange"></i></li>
-                <li class="lista"><i class="fas fa-envelope-square fa-5x" style="color:orange"></i></li>
-            </ul>
+        <div class="flex-start container" style="position:relative">
+            <div class="item1 margin"><i class="fab fa-facebook-square fa-5x" style="color:orange"></i></div>
+            <div class="item1 margin"><i class="fab fa-linkedin fa-5x" style="color:orange"></i></div>
+            <div class="item1 margin"><i class="fas fa-phone-square-alt fa-5x" style="color:orange"></i></div>
+            <div class="item1 margin"><i class="fas fa-envelope-square fa-5x" style="color:orange"></i></div>
+            <div class="item1 margin"><i class="fab fa-github-square fa-5x" style="color:orange"></i></div>
         </div>
-
-        <div class="empty100"></div>
         <div class="empty100"></div>
 
         <a href="" class="link" style="font-size: 20px">Me envie uma mensagem</a>

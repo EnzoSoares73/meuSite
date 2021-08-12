@@ -126,9 +126,17 @@ li.lista {
     flex-direction: column;
 }
 
+.flex-start {
+    justify-content: flex-start;
+}
+
 .item1 {
     flex: 0 1 auto;
     max-width: 50%;
+}
+
+.margin {
+    margin-left: 20px;
 }
 
 .blog-title {
