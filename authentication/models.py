@@ -9,6 +9,7 @@ class User(AbstractUser):
     about = models.TextField("Sobre", null=True, default='Uma descrição sobre mim')
     linkedin = models.CharField(max_length=50, null=True, default='')
     facebook = models.CharField(max_length=50, null=True, default='')
+    github = models.CharField(max_length=50, null=True, default='')
     ddd = models.CharField("DDD", max_length=2, null=True, default='')
     cellphone = models.CharField("Número de telefone", null=True, max_length=10, default='')
     cv = models.FileField("Currículo", upload_to="pdfs", null=True)
