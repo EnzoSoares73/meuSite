@@ -1,4 +1,15 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/styles/tomorrow-night-bright.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static "../static/css/code.css" %}" media="screen"/>
+{% endblock %}
+
+{% block scripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+{% endblock %}
 
 {% block title %}{{ blog.title }}{% endblock %}
 
@@ -6,5 +17,7 @@
     <h3>{{ blog.title }}</h3>
     <p style="line-height: 80%">{{ blog.user }}</p>
     <p>Publicado em {{ blog.pub_date }}</p>
-    <p>{{ blog.text }}</p>
+    {% autoescape off %}
+        <p>{{ blog.text }}</p>
+    {% endautoescape %}
 {% endblock %}

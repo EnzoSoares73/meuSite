@@ -92,7 +92,7 @@ html, body {
 .container {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     flex-direction: row;
 }
 
