@@ -27,6 +27,18 @@ def home(request):
 
     return render(request, 'authentication/home.html', context)
 
+def about(request):
+    try:
+        user = User.objects.get(username=os.environ.get("USER"))
+    except:
+        user = User.generate_sentinel()
+
+    context = {
+        'user': user,
+    }
+
+    return render(request, 'authentication/about.html', context)
+
 def truncate(str, num_chars = 384):
     if str != '':
         special_chars = {'~', ':', "'", '+', '[', '\\', '@', '^', '{', '%', '(', '-', '"', '*', '|', ',', '&', '<', '`', '}', '.', '_', '=',

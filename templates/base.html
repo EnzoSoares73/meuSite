@@ -20,21 +20,19 @@
     </head>
 
     <body>
-        <div class="full-height">
-            <div class="center">
-                <ul class="hlist">
-                    {% block toolbar %}
-                        <li class="lista"><a href="{% url "authentication:home" %}" class="link">Home</a></li>
-                        <li class="lista"><a href="{% url "blog:index" %}" class="link">Blog</a></li>
-                        <li class="lista"><a href="" class="link">Sobre mim</a></li>
-                        <li class="lista"><a href="" class="link">Contato</a></li>
-                    {% endblock %}
-                </ul>
+        <div class="center">
+            <div class="flex-start container hlist">
+                {% block toolbar %}
+                    <div class="item1 margin"><a href="{% url "authentication:home" %}" class="link">Home</a></div>
+                    <div class="item1 margin"><a href="{% url "blog:index" %}" class="link">Blog</a></div>
+                    <div class="item1 margin"><a href="{% url "authentication:about" %}" class="link">Sobre mim</a></div>
+                    <div class="item1 margin"><a href="" class="link">Contato</a></div>
+                {% endblock %}
+            </div>
 
-                <div class="scrollbox">
-                    {% block content %}
-                    {% endblock %}
-                </div>
+            <div class="scrollbox">
+                {% block content %}
+                {% endblock %}
             </div>
         </div>
     </body>

@@ -1,19 +1,23 @@
 html, body {
     height: 98%;
+    width: 100%;
     margin: 0;
     background-color: orange;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .center {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
     border: 5px solid ghostwhite;
     background-color: ghostwhite;
-    padding: 10px;
+    padding: 25px 50px 75px;
     width: 93%;
-    height: 86%;
+    height: 93%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .center1 {
@@ -22,16 +26,12 @@ html, body {
 }
 
 .scrollbox {
-    width:93%;
-    height: 75%;
+    width: 100%;
+    height: 100%;
     line-height:3em;
     overflow-y: scroll;
     margin: 0 auto;
     padding:5px;
-    left: 50%;
-    top: 330px;
-    transform: translate(-50%, -50%);
-    position: absolute;
 }
 
 .blog-post {
@@ -58,29 +58,6 @@ html, body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: orange;
-}
-
-.hlist {
-    display: flex;
-    top: 20px;
-    right: 50px;
-    position: absolute
-}
-.hlist li {
-    list-style-type: none;
-    color: aqua;
-}
-
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-}
-
-li.lista {
-    float: right;
-    margin: 8px;
 }
 
 .orange-text {
@@ -128,6 +105,12 @@ li.lista {
 
 .flex-start {
     justify-content: flex-start;
+}
+
+.hlist {
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 30px
 }
 
 .item1 {
