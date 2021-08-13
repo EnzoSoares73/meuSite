@@ -1,5 +1,5 @@
 html, body {
-    height: 98%;
+    height: 100%;
     width: 100%;
     margin: 0;
     background-color: orange;
@@ -12,8 +12,8 @@ html, body {
     border: 5px solid ghostwhite;
     background-color: ghostwhite;
     padding: 25px 50px 75px;
-    width: 93%;
-    height: 93%;
+    width: 97%;
+    height: 95%;
     display: flex;
     justify-content: center;
     align-items: center;
