@@ -14,10 +14,14 @@
 {% block title %}{{ blog.title }}{% endblock %}
 
 {% block content %}
-    <h3>{{ blog.title }}</h3>
-    <p style="line-height: 80%">{{ blog.user }}</p>
-    <p>Publicado em {{ blog.pub_date }}</p>
-    {% autoescape off %}
-        <p>{{ blog.text }}</p>
-    {% endautoescape %}
+    <div class="center2">
+        <div class="item2">
+            <h3>{{ blog.title }}</h3>
+            <p style="line-height: 80%">{{ blog.user }}</p>
+            <p>Publicado em {{ blog.pub_date }}</p>
+            {% autoescape off %}
+                <p>{{ blog.text }}</p>
+            {% endautoescape %}
+        </div>
+    </div>
 {% endblock %}
