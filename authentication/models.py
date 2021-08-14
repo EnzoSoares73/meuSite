@@ -25,10 +25,6 @@ class User(AbstractUser):
     def generate_sentinel(cls):
         return User.objects.get_or_create(username="Anonymous")[0]
 
-    @classmethod
-    def generate_placeholder(cls):
-        return User(username="Anonymous")
-
 class Skill(models.Model):
     name = models.CharField("nome", max_length=20)
     proficiency = models.IntegerField("proeficiência", validators=[validators.validate_range])
@@ -36,15 +32,3 @@ class Skill(models.Model):
 
     def __str__(self):
         return self.name
-
-    @classmethod
-    def generate_sentinel(cls):
-        return Skill.objects.get_or_create(name="Sentinel",
-                                           proficiency=50,
-                                           user=User.generate_sentinel())[0]
-
-    @classmethod
-    def generate_placeholder(cls):
-        return Skill(name="Sentinel",
-                    proficiency=50,
-                    user=User.generate_sentinel())

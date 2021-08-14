@@ -17,9 +17,6 @@ def home(request):
     except:
         user = User.generate_sentinel()
 
-    if user.skill_set.all().count() == 0:
-        Skill.generate_sentinel()
-
     context = {
         'lista_blog_posts': lista_blog_posts,
         'user': user

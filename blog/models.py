@@ -28,18 +28,6 @@ class Post(models.Model):
             num = len(lista_blog_posts)
         return lista_blog_posts[:num]
 
-    @classmethod
-    def generate_sentinel(cls):
-        return Post.objects.get_or_create(user=User.generate_sentinel(),
-                                          title="Em construção",
-                                          text="Esse post ainda está sendo construído :)",
-                                          pub_date=date(1970, 1, 1))[0]
-    @classmethod
-    def generate_placeholder(cls):
-        return Post(user=User.generate_placeholder(),
-                    title="Em construção",
-                    text="Esse post ainda está sendo construído :)",
-                    pub_date=date(1970, 1, 1))
 
     def time_to_be_published(self):
         if self.pub_date > datetime.now(timezone(timedelta(hours=-3))):
