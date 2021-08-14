@@ -67,7 +67,7 @@ class Language(models.Model):
 class Project(models.Model):
     name = models.CharField("Nome", max_length=60)
     link = models.URLField("Link", null=True)
-    description = models.TextField("Descrição")
+    description = models.TextField("Descrição", max_length=200)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
