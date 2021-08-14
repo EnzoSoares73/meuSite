@@ -1,7 +1,7 @@
+from urllib.parse import urlparse, parse_qs
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.db.models import Model
-
 from authentication import validators
 
 def get_sentinel_user():
@@ -66,9 +66,23 @@ class Language(models.Model):
 
 class Project(models.Model):
     name = models.CharField("Nome", max_length=60)
-    youtube_url = models.URLField("Link para YouTube")
+    link = models.URLField("Link", null=True)
     description = models.TextField("Descrição")
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
+
+    def extract_video_id(self, url):
+        query = urlparse(url)
+        if query.hostname == 'youtu.be':
+            return query.path[1:]
+        if query.hostname in {'www.youtube.com', 'youtube.com'}:
+            if query.path == '/watch':
+                return parse_qs(query.query)['v'][0]
+            if query.path[:7] == '/watch/':
+                return query.path.split('/')[1]
+            if query.path[:7] == '/embed/':
+                return query.path.split('/')[2]
+            if query.path[:3] == '/v/':
+                return query.path.split('/')[2]

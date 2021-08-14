@@ -30,8 +30,15 @@ def about(request):
     except:
         user = User.generate_sentinel()
 
+    projects = user.project_set.all()
+
+    for project in projects:
+        if (project.extract_video_id(project.link) != None):
+            project.link = project.extract_video_id(project.link)
+
     context = {
         'user': user,
+        'projects': projects,
     }
 
     return render(request, 'authentication/about.html', context)
