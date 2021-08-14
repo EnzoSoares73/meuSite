@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.db.models import Model
+
 from authentication import validators
 
 def get_sentinel_user():
@@ -26,9 +28,47 @@ class User(AbstractUser):
         return User.objects.get_or_create(username="Anonymous")[0]
 
 class Skill(models.Model):
-    name = models.CharField("nome", max_length=20)
+    name = models.CharField("Nome", max_length=20)
     proficiency = models.IntegerField("proeficiência", validators=[validators.validate_range])
-    user = models.ForeignKey(User, on_delete=models.SET(get_sentinel_user))
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
+
+class Experience(models.Model):
+    name = models.CharField("Nome da empresa", max_length=50)
+    start_date = models.DateField("Data de começo", default=None)
+    end_date = models.DateField("Data de desligamento", default=None, null=True, blank=True)
+    position = models.CharField("Cargo", max_length=20)
+    place = models.CharField("Localidade", max_length=30)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
+
+class Education(models.Model):
+    name = models.CharField("Nome da instituição", max_length=50)
+    start_date = models.DateField("Data de começo", default=None)
+    end_date = models.DateField("Data de desligamento", default=None, null=True, blank=True)
+    place = models.CharField("Localidade", max_length=30)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
+
+class Language(models.Model):
+    name = models.CharField("Nome", max_length=20)
+    proficiency = models.IntegerField("proeficiência", validators=[validators.validate_range])
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
+
+class Project(models.Model):
+    name = models.CharField("Nome", max_length=60)
+    youtube_url = models.URLField("Link para YouTube")
+    description = models.TextField("Descrição")
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
