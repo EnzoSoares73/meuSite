@@ -57,9 +57,9 @@
                 <div style="height: fit-content">
                     {% for skill in user.skill_set.all %}
                         <div class="w3-light-grey" style="height: fit-content">
-                            <div id="myBar" class="w3-container w3-orange" style="height:12px;width:{{ skill.proficiency }}%"></div>
+                            <div class="w3-container orange-gradient" style="height:12px;width:{{ skill.proficiency }}%"></div>
                         </div>
-                        <p id="demo">{{ skill.name }}</p>
+                        <p>{{ skill.name }}</p>
                     {% empty %}
                         <h4 >Ainda não foi adicionada nenhuma competência ;-;</h4>
                     {% endfor %}

@@ -1,2 +1,68 @@
 {% extends "base.html" %}
     {% load static %}
+    {% load mathfilters %}
+
+    {% block stylesheets %}
+        <link rel="stylesheet" type="text/css" href="{% static "../static/css/circle.css" %}" media="screen"/>
+    {% endblock %}
+
+    {% block scripts %}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-circle-progress/1.2.2/circle-progress.min.js"></script>
+    {% endblock %}
+
+    {% block content %}
+        <div class="center2">
+            <div class="item2">
+                <b class="orange-text">{{ user }}</b>
+            </div>
+
+            <div class="empty100"></div>
+
+            <div class="item2">
+                <h1 class="lineheight">Estagiário na Basis Tecnologia da Informação S.A. | Técnico em Desenvolvimento de Sistemas | Graduando em Ciências da Computação | Fullstack Developer | Freelancer | Blogueiro</h1>
+            </div>
+
+            <div class="empty100"></div>
+            <div class="empty100"></div>
+
+            <div class="item2 container2">
+                <div class="item1" style="width: 50%">
+                    {% for skill in user.skill_set.all %}
+                        <div class="w3-light-grey" style="height: fit-content">
+                            <div class="w3-container orange-gradient" style="height:12px;width:{{ skill.proficiency }}%"></div>
+                        </div>
+                        <p>{{ skill.name }}</p>
+                    {% empty %}
+                        <h4 >Ainda não foi adicionada nenhuma competência ;-;</h4>
+                    {% endfor %}
+                </div>
+                <div class="item1 container3 wrap" style="justify-content: space-around">
+                    {% for language in user.language_set.all %}
+                        <div class="container2" style="max-width: 40%">
+                            <div class="circle {{ language }}">
+                                <div class="bar"></div>
+                                <div class="box"><span>{{ language.proficiency }}</span></div>
+                            </div>
+                            <p><b style="color: gray">{{ language }}</b></p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <script>
+            let options = {}
+            {% for language in user.language_set.all %}
+                str = "{{ language.proficiency|div:100 }}";
+                str = str.replace(",", ".")
+                options = {
+                    startAngle: -1.55,
+                    size: 150,
+                    value: parseFloat(str),
+                    fill: {gradient: ['#FFA500FF', '#C76716FF']}
+                }
+                $(".{{ language }} .bar").circleProgress(options);
+            {% endfor %}
+        </script>
+
+    {% endblock %}

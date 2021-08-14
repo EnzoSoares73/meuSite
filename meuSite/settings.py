@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'mathfilters',
     'blog.apps.BlogConfig',
     'authentication.apps.AuthenticationConfig'
 ]
