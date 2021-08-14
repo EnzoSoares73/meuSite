@@ -31,14 +31,19 @@ def about(request):
         user = User.generate_sentinel()
 
     projects = user.project_set.all()
+    educations = user.education_set.order_by('-start_date')
+    experiences = user.experience_set.order_by('-start_date')
 
     for project in projects:
         if (project.extract_video_id(project.link) != None):
             project.link = project.extract_video_id(project.link)
 
+
     context = {
         'user': user,
         'projects': projects,
+        'educations': educations,
+        'experiences': experiences,
     }
 
     return render(request, 'authentication/about.html', context)

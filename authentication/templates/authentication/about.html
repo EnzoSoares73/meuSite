@@ -60,9 +60,40 @@
             <div class="item2 container2">
                 <div class="item1 container">
                     <h1 class="lessatention">Formação</h1>
+                    {% for education in educations %}
+                        <div class="card">
+                            <p style="color: orange">{{ education.name }}</p>
+                            <p>De {{ education.start_date|date:"E Y" }} até
+                            {% if education.end_date is not None %}
+                                {{ education.end_date|date:"E Y" }}
+                            {% else %}
+                                o presente
+                            {% endif %}</p>
+                            <p style="color: grey">Em {{ education.place }}</p>
+                        </div>
+                    {% empty %}
+                        <div class="empty100"></div>
+                        <h4 >Ainda não foi adicionada nenhuma formação acadêmica ;-;</h4>
+                    {% endfor %}
                 </div>
                 <div class="item1 container">
                     <h1 class="lessatention">Experiência</h1>
+                    {% for experience in experiences %}
+                        <div class="card">
+                            <p style="color: orange">{{ experience.name }}</p>
+                            <p>{{ experience.position }}</p>
+                            <p>De {{ experience.start_date|date:"E Y" }} até
+                            {% if experience.end_date is not None %}
+                                {{ experience.end_date|date:"E Y" }}
+                            {% else %}
+                                o presente
+                            {% endif %}</p>
+                            <p style="color: grey">Em {{ experience.place }}</p>
+                        </div>
+                    {% empty %}
+                        <div class="empty100"></div>
+                        <h4 >Ainda não foi adicionada nenhuma experiência profissional ;-;</h4>
+                    {% endfor %}
                 </div>
             </div>
 
