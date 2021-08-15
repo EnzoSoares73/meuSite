@@ -28,11 +28,13 @@
         <div class="container">
             {% for post in lista_blog_posts %}
                     <div class="item1">
-                        <div class="blog-title">
-                            <a href="{% url 'blog:post' post.id %}" class="link">{{ post.title }}</a>
-                        </div>
-                        <div class="blog-post">
-                            {{post.text}}
+                        <div class="card1">
+                            <div class="blog-title">
+                                <a href="{% url 'blog:post' post.id %}" class="link">{{ post.title }}</a>
+                            </div>
+                            <div class="blog-post">
+                                {{post.text}}
+                            </div>
                         </div>
                         <a href="{% url 'blog:post' post.id %}" class="link" style="font-size: 20px">Continuar a ler</a>
                     </div>
@@ -49,12 +51,12 @@
         <h1 class="lessatention">Sobre mim</h1>
         <div class="container">
             <div class="item1" style="flex-grow: 3; max-width: 70%">
-                <div class="blog-post">
+                <div class="blog-post card1">
                     {{ user.about }}
                 </div>
             </div>
             <div class="item1" style="flex-grow: 1; max-width: 100%">
-                <div style="height: fit-content">
+                <div style="height: fit-content; width: 90%">
                     {% for skill in user.skill_set.all %}
                         <div class="w3-light-grey" style="height: fit-content">
                             <div class="w3-container orange-gradient" style="height:12px;width:{{ skill.proficiency }}%"></div>
@@ -65,10 +67,9 @@
                     {% endfor %}
                 </div>
             </div>
-
         </div>
 
-        <a href="" class="link" style="font-size: 20px">Aprenda mais sobre mim</a>
+        <a href="{% url "authentication:about" %}" class="link" style="font-size: 20px">Aprenda mais sobre mim</a>
 
         <div class="empty100"></div>
 

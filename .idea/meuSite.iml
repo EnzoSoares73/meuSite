@@ -22,6 +22,7 @@
     <orderEntry type="library" name="jquery-circle-progress" level="application" />
     <orderEntry type="library" name="jquery" level="application" />
     <orderEntry type="library" name="w3" level="application" />
+    <orderEntry type="library" name="d821bb9b77" level="application" />
   </component>
   <component name="PackageRequirementsSettings">
     <option name="versionSpecifier" value="Strong equality (==x.y.z)" />
