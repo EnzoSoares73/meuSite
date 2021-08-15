@@ -11,6 +11,7 @@
 
         <link rel="stylesheet" type="text/css" href="{% static "../static/css/style.css" %}" media="screen"/>
         <link rel="stylesheet" type="text/css" href="{% static "../static/css/link.css" %}" media="screen"/>
+        <link rel="stylesheet" type="text/css" href="{% static "../static/css/loader.css" %}" media="screen"/>
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link rel="shortcut icon" type="image/x-icon" href="{% static "../static/ico/favicon.ico" %}">
 
@@ -21,8 +22,9 @@
         {% endblock %}
     </head>
 
-    <body>
-        <div class="center">
+    <body onload="showPage()" id="body">
+        <div id="loader"></div>
+        <div class="center animate-bottom" style="display:none;" id="myDiv">
             <div class="flex-start container hlist">
                 {% block toolbar %}
                     <div class="item1 margin"><a href="{% url "authentication:home" %}" class="link">Home</a></div>
@@ -37,5 +39,14 @@
                 {% endblock %}
             </div>
         </div>
+
+    <script>
+        var myVar;
+        function showPage() {
+          document.getElementById("loader").style.display = "none";
+          document.getElementById("myDiv").style.display = "block";
+          document.getElementById("body").style.backgroundColor = "orange"
+        }
+    </script>
     </body>
 </html>
