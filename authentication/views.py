@@ -60,12 +60,14 @@ def contact(request):
         form = EmailForm(request.POST)
 
         if form.is_valid():
+
             cd = form.cleaned_data
             subject = "Sending an email with Django"
             message = cd['message']
+            recipient = [os.environ.get("EMAIL")]
 
             send_mail(subject, message,
-                      settings.DEFAULT_FROM_EMAIL, [cd['recipient']])
+                      settings.DEFAULT_FROM_EMAIL, recipient)
 
             messageSent = True
 
