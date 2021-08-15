@@ -1,9 +1,12 @@
 import os
 
+from django.conf import settings
+from django.core.mail import send_mail
 from django.shortcuts import render
+
+from authentication.forms import EmailForm
 from blog.models import Post
 from authentication.models import User, Skill
-
 
 def home(request):
     num_blog_posts = 2
@@ -47,6 +50,34 @@ def about(request):
     }
 
     return render(request, 'authentication/about.html', context)
+
+def contact(request):
+
+    messageSent = False
+
+    if request.method == 'POST':
+
+        form = EmailForm(request.POST)
+
+        if form.is_valid():
+            cd = form.cleaned_data
+            subject = "Sending an email with Django"
+            message = cd['message']
+
+            send_mail(subject, message,
+                      settings.DEFAULT_FROM_EMAIL, [cd['recipient']])
+
+            messageSent = True
+
+    else:
+        form = EmailForm()
+
+    context = {
+        'form': form,
+        'messageSent': messageSent,
+    }
+
+    return render(request, 'authentication/contact.html', context)
 
 def truncate(str, num_chars = 384):
     if str != '':

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block stylesheets %}
+        <link rel="stylesheet" type="text/css" href="{% static "../static/css/form.css" %}" media="screen"/>
+{% endblock %}
+
+{% block content %}
+    <div class="center2">
+        <div class="item3">
+        {% if messageSent %}
+            <h3><strong>Email enviado com sucesso</strong></h3>
+            <p>Sua mensagem foi enviada para {{ form.cleaned_data.to }}</p>
+        {% else %}
+            <h3><strong>Propostas, sugestões e críticas</strong></h3>
+
+            <div class="card1">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="wrap-input100">
+                        {{ form.name }}
+                    </div>
+                    <div class="wrap-input100">
+                        {{ form.email }}
+                    </div>
+                    <div class="wrap-input100">
+                        {{ form.message }}
+                    </div>
+                    <input type="submit" style="width: 100%" class="button1" value="Enviar email"/>
+                </form>
+            </div>
+        {% endif %}
+        </div>
+    </div>
+{% endblock %}
