@@ -12,5 +12,5 @@ class EmailForm(forms.Form):
     message = forms.CharField(
         widget=forms.Textarea(attrs={
         'placeholder': 'Digite aqui a sua mensagem',
-        'style': 'wrap: hard; height: 190px',
+        'style': 'wrap: hard; height: 90px',
         'class': 'input100'}), max_length=500)

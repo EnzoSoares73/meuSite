@@ -24,6 +24,7 @@
     <orderEntry type="library" name="w3" level="application" />
     <orderEntry type="library" name="d821bb9b77" level="application" />
     <orderEntry type="library" name="bootstrap" level="application" />
+    <orderEntry type="library" name="api" level="application" />
   </component>
   <component name="PackageRequirementsSettings">
     <option name="versionSpecifier" value="Strong equality (==x.y.z)" />

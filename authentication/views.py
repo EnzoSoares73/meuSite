@@ -1,8 +1,11 @@
+import json
 import os
+import urllib
 
 from django.conf import settings
+from django.contrib import messages
 from django.core.mail import send_mail
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from authentication.forms import EmailForm
 from blog.models import Post
@@ -52,31 +55,44 @@ def about(request):
     return render(request, 'authentication/about.html', context)
 
 def contact(request):
-
     messageSent = False
-
     if request.method == 'POST':
-
         form = EmailForm(request.POST)
-
         if form.is_valid():
 
-            cd = form.cleaned_data
-            subject = "Sending an email with Django"
-            message = cd['message']
-            recipient = [os.environ.get("EMAIL")]
+            ''' Begin reCAPTCHA validation '''
+            recaptcha_response = request.POST.get('g-recaptcha-response')
+            url = 'https://www.google.com/recaptcha/api/siteverify'
+            values = {
+                'secret': os.environ.get('RECAPTCHA_PRIVATE_KEY'),
+                'response': recaptcha_response
+            }
+            data = urllib.parse.urlencode(values).encode()
+            req =  urllib.request.Request(url, data=data)
+            response = urllib.request.urlopen(req)
+            result = json.loads(response.read().decode())
+            ''' End reCAPTCHA validation '''
 
-            send_mail(subject, message,
-                      settings.DEFAULT_FROM_EMAIL, recipient)
-
-            messageSent = True
+            if result['success']:
+                cd = form.cleaned_data
+                subject = "Sending an email with Django"
+                message = cd['message']
+                recipient = [os.environ.get("EMAIL")]
+                send_mail(subject, message,
+                          settings.DEFAULT_FROM_EMAIL, recipient)
+                messageSent = True
+            else:
+                messages.error(request, 'reCAPTCHA inválido.')
 
     else:
         form = EmailForm()
 
+
     context = {
+        'key': os.environ.get('RECAPTCHA_SITE_KEY'),
         'form': form,
         'messageSent': messageSent,
+        'messages': messages.get_messages(request)
     }
 
     return render(request, 'authentication/contact.html', context)

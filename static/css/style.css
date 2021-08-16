@@ -213,7 +213,6 @@ html, body {
     transition: 0.3s;
     padding: 20px 16px;
     line-height: 100%;
-    border-radius: 10px;
 }
 
 .card:hover {
