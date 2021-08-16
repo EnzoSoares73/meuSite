@@ -8,8 +8,8 @@ services:
         environment:
             MYSQL_DATABASE: 'meu_site'
             MYSQL_USER: 'enzos'
-            MYSQL_PASSWORD: 'L+)Fpt;"+4E(W7Pw'
-            MYSQL_ROOT_PASSWORD: 'L+)Fpt;"+4E(W7Pw'
+            MYSQL_PASSWORD: '${DB_PASSWORD}'
+            MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
 
     python:
         image: python:3.8

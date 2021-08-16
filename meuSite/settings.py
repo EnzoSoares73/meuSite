@@ -90,7 +90,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'meu_site',
         'USER': 'enzos',
-        'PASSWORD': 'L+)Fpt;"+4E(W7Pw',
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
         'HOST': 'db',   # Name of the db service in docker-compose.yml
         'PORT': '3306',
 
