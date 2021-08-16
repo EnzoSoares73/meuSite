@@ -23,8 +23,8 @@
     </head>
 
     <body onload="showPage()" id="body">
-        <div id="loader"></div>
-        <div class="center animate-bottom" style="display:none;" id="myDiv">
+        <div class="loader"></div>
+        <div class="center animate-bottom">
             <div class="flex-start container hlist">
                 {% block toolbar %}
                     <div class="item1 margin"><a href="{% url "authentication:home" %}" class="link">Home</a></div>
@@ -44,8 +44,6 @@
         let myVar;
         function showPage() {
           document.getElementById("loader").style.display = "none";
-          document.getElementById("myDiv").style.display = "block";
-          document.getElementById("body").style.backgroundColor = "orange"
         }
     </script>
     </body>
