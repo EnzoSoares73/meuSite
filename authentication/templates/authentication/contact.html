@@ -23,15 +23,15 @@
                 <div class="card1">
                     <form method="post">
                         {% csrf_token %}
-                        <div class="wrap-input100">
-                            {{ form.name }}
-                        </div>
-                        <div class="wrap-input100">
-                            {{ form.email }}
-                        </div>
-                        <div class="wrap-input100">
-                            {{ form.message }}
-                        </div>
+                        {% for field in form %}
+                            {% if field.is_hidden %}
+                                {{ field }}
+                            {% else %}
+                                <div class="wrap-input100">
+                                    {{ field }}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
                         <div class="container" style="margin-bottom: 10px">
                             <div class="g-recaptcha" data-sitekey="{{ key }}"></div>
                         </div>

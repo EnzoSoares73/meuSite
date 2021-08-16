@@ -59,30 +59,32 @@ def contact(request):
     if request.method == 'POST':
         form = EmailForm(request.POST)
         if form.is_valid():
+            if form.cleaned_data['email_dummy'] == form.emaildummy:
+                ''' Begin reCAPTCHA validation '''
+                recaptcha_response = request.POST.get('g-recaptcha-response')
+                url = 'https://www.google.com/recaptcha/api/siteverify'
+                values = {
+                    'secret': os.environ.get('RECAPTCHA_PRIVATE_KEY'),
+                    'response': recaptcha_response
+                }
+                data = urllib.parse.urlencode(values).encode()
+                req =  urllib.request.Request(url, data=data)
+                response = urllib.request.urlopen(req)
+                result = json.loads(response.read().decode())
+                ''' End reCAPTCHA validation '''
 
-            ''' Begin reCAPTCHA validation '''
-            recaptcha_response = request.POST.get('g-recaptcha-response')
-            url = 'https://www.google.com/recaptcha/api/siteverify'
-            values = {
-                'secret': os.environ.get('RECAPTCHA_PRIVATE_KEY'),
-                'response': recaptcha_response
-            }
-            data = urllib.parse.urlencode(values).encode()
-            req =  urllib.request.Request(url, data=data)
-            response = urllib.request.urlopen(req)
-            result = json.loads(response.read().decode())
-            ''' End reCAPTCHA validation '''
-
-            if result['success']:
-                cd = form.cleaned_data
-                subject = "Sending an email with Django"
-                message = cd['message']
-                recipient = [os.environ.get("EMAIL")]
-                send_mail(subject, message,
-                          settings.DEFAULT_FROM_EMAIL, recipient)
-                messageSent = True
+                if result['success']:
+                    cd = form.cleaned_data
+                    subject = "Sending an email with Django"
+                    message = cd['message']
+                    recipient = [os.environ.get("EMAIL")]
+                    send_mail(subject, message,
+                              settings.DEFAULT_FROM_EMAIL, recipient)
+                    messageSent = True
+                else:
+                    messages.error(request, 'reCAPTCHA inválido.')
             else:
-                messages.error(request, 'reCAPTCHA inválido.')
+                messages.error(request, 'Comportamento suspeito encontrado')
 
     else:
         form = EmailForm()

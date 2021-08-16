@@ -1,6 +1,7 @@
 from django import forms
 
 class EmailForm(forms.Form):
+    emaildummy = 'dummy@dummy.com'
     name = forms.CharField(
         widget=forms.TextInput(attrs={
             'placeholder': 'Name',
@@ -14,3 +15,8 @@ class EmailForm(forms.Form):
         'placeholder': 'Digite aqui a sua mensagem',
         'style': 'wrap: hard; height: 90px',
         'class': 'input100'}), max_length=500)
+    email_dummy = forms.EmailField(
+        widget=forms.HiddenInput(attrs={
+            'value': emaildummy,
+            'required': '',
+        }))
