@@ -19,14 +19,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
-f = open('.env', 'r')
 newDict = {}
-for line in f:
-    listedline = line.strip().split('=')
-    if len(listedline) > 1:
-        newDict[listedline[0]] = listedline[1]
 
-os.environ.update(newDict)
+try:
+    f = open('.env', 'r')
+    for line in f:
+        listedline = line.strip().split('=')
+        if len(listedline) > 1:
+            newDict[listedline[0]] = listedline[1]
+finally:
+    os.environ.update(newDict)
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get("SECRET_KEY")
