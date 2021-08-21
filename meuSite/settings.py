@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
+import logging
 import os
 from pathlib import Path
 
@@ -18,14 +19,20 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
-f = open('.env', 'r')
 newDict = {}
-for line in f:
-    listedline = line.strip().split('=')
-    if len(listedline) > 1:
-        newDict[listedline[0]] = listedline[1]
+logger = logging.getLogger(__name__)
+env_name = '.env'
 
-os.environ.update(newDict)
+try:
+    f = open(env_name, 'r')
+    for line in f:
+        listedline = line.strip().split('=')
+        if len(listedline) > 1:
+            newDict[listedline[0]] = listedline[1]
+except:
+    logger.error("Falha na abertura do arquivo " + env_name)
+finally:
+    os.environ.update(newDict)
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get("SECRET_KEY")
