@@ -23,6 +23,7 @@ services:
     build: .
     container_name: meu_site
     command: bash -c "python3 manage.py migrate && python3 manage.py runserver 0.0.0.0:8000"
+    restart: always
     volumes:
       - .:/app
     ports:
