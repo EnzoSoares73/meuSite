@@ -95,7 +95,7 @@ DATABASES = {
         'NAME': 'meu_site',
         'USER': 'enzos',
         'PASSWORD': os.environ.get("DB_PASSWORD"),
-        'HOST': 'db',
+        'HOST': 'mysql_db',
         'PORT': '3306',
 
     }
