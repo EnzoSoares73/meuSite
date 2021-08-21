@@ -36,10 +36,9 @@ class Post(models.Model):
     def time_to_be_published(self):
         if self.pub_date > datetime.now(timezone(timedelta(hours=-3))):
             temp = self.pub_date - datetime.now(timezone(timedelta(hours=-3)))
-            str = self.format_timedelta(temp)
-            return f"Será publicado em {str}"
-        else:
-            return "Já publicado"
+            string = self.format_timedelta(temp)
+            return f"Será publicado em {string}"
+        return "Já publicado"
 
     def format_timedelta(self, timedeltatobeformatted):
         var = timedeltatobeformatted.total_seconds()
@@ -50,25 +49,25 @@ class Post(models.Model):
         var -= hours * (60 * 60)
         minutes = var // 60
 
-        str = f"{int(days)}"
+        string = f"{int(days)}"
 
         if days == 1:
-            str = str + " dia "
+            string = string + " dia "
         else:
-            str = str + " dias, "
+            string = string + " dias, "
 
-        str = str + f"{int(hours)}"
+        string = string + f"{int(hours)}"
 
         if hours == 1:
-            str = str + " hora "
+            string = string + " hora "
         else:
-            str = str + " horas e "
+            string = string + " horas e "
 
-        str = str + f"{int(minutes)}"
+        string = string + f"{int(minutes)}"
 
         if minutes == 1:
-            str = str + " minuto "
+            string = string + " minuto "
         else:
-            str = str + " minutos"
+            string = string + " minutos"
 
-        return str
+        return string

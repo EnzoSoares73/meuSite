@@ -19,9 +19,9 @@ def home(request):
     for post in lista_blog_posts:
         post.text = truncate(post.text)
 
-    try:
+    if User.objects.get(username=os.environ.get("USER")) is not None:
         user = User.objects.get(username=os.environ.get("USER"))
-    except:
+    else:
         user = User.generate_sentinel()
 
     context = {
@@ -33,9 +33,9 @@ def home(request):
 
 
 def about(request):
-    try:
+    if User.objects.get(username=os.environ.get("USER")) is not None:
         user = User.objects.get(username=os.environ.get("USER"))
-    except:
+    else:
         user = User.generate_sentinel()
 
     projects = user.project_set.all()
@@ -43,7 +43,7 @@ def about(request):
     experiences = user.experience_set.order_by('-start_date')
 
     for project in projects:
-        if (project.extract_video_id(project.link) != None):
+        if (project.extract_video_id(project.link) is not None):
             project.link = project.extract_video_id(project.link)
 
     context = {
@@ -62,7 +62,7 @@ def contact(request):
         form = EmailForm(request.POST)
         if form.is_valid():
             if form.cleaned_data['email_dummy'] == form.emaildummy:
-                ''' Begin reCAPTCHA validation '''
+                #Começo reCAPTCHA
                 recaptcha_response = request.POST.get('g-recaptcha-response')
                 url = 'https://www.google.com/recaptcha/api/siteverify'
                 values = {
@@ -73,7 +73,7 @@ def contact(request):
                 req = urllib.request.Request(url, data=data)
                 response = urllib.request.urlopen(req)
                 result = json.loads(response.read().decode())
-                ''' End reCAPTCHA validation '''
+                #Fim reCAPTCHA
 
                 if result['success']:
                     cd = form.cleaned_data
@@ -101,17 +101,17 @@ def contact(request):
     return render(request, 'authentication/contact.html', context)
 
 
-def truncate(str, num_chars=384):
-    if str != '':
+def truncate(string, num_chars=384):
+    if string != '':
         special_chars = {'~', ':', "'", '+', '[', '\\', '@', '^', '{', '%', '(', '-', '"', '*', '|', ',', '&', '<', '`',
                          '}', '.', '_', '=',
                          ']', '!', '>', ';', '?', '#', '$', ')', '/', ' '}
 
-        str = str[:num_chars]
+        string = string[:num_chars]
 
-        while str[-1] in special_chars:
-            str = str[:-1]
+        while string[-1] in special_chars:
+            string = string[:-1]
 
-        str += '...'
+        string += '...'
 
-    return str
+    return string

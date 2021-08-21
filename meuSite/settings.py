@@ -14,6 +14,8 @@ import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+import django.db.models
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
@@ -29,15 +31,13 @@ try:
         listedline = line.strip().split('=')
         if len(listedline) > 1:
             newDict[listedline[0]] = listedline[1]
-except:
+except FileNotFoundError:
     logger.error("Falha na abertura do arquivo " + env_name)
 finally:
     os.environ.update(newDict)
 
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = int(os.environ.get("DEBUG", default=0))
 
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
@@ -71,8 +71,7 @@ ROOT_URLCONF = 'meuSite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
-        ,
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -96,7 +95,7 @@ DATABASES = {
         'NAME': 'meu_site',
         'USER': 'enzos',
         'PASSWORD': os.environ.get("DB_PASSWORD"),
-        'HOST': 'db',  # Name of the db service in docker-compose.yml
+        'HOST': 'db',
         'PORT': '3306',
 
     }
@@ -141,7 +140,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = 'staticfiles'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'media/'),
+    os.path.join(BASE_DIR, 'media'),
     os.path.join(BASE_DIR, 'static'),
 ]
 
@@ -167,5 +166,6 @@ EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_PASSWORD")
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = False
+SECURE_SSL_REDIRECT = False

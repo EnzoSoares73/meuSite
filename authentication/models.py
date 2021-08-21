@@ -24,8 +24,7 @@ class User(AbstractUser):
     def __str__(self):
         if (self.first_name + ' ' + self.last_name) != ' ':
             return self.first_name + ' ' + self.last_name
-        else:
-            return self.username
+        return self.username
 
     @classmethod
     def generate_sentinel(cls):
