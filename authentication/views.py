@@ -70,7 +70,10 @@ def contact(request):
                     'response': recaptcha_response
                 }
                 data = urllib.parse.urlencode(values).encode()
-                req = urllib.request.Request(url, data=data)
+                if url.lower().startswith('http'):
+                    req = urllib.request.Request(url, data=data)
+                else:
+                    raise ValueError from None
                 response = urllib.request.urlopen(req)
                 result = json.loads(response.read().decode())
                 #Fim reCAPTCHA
