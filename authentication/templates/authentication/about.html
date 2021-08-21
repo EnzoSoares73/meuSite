@@ -1,144 +1,147 @@
 {% extends "base.html" %}
-    {% load static %}
-    {% load mathfilters %}
+{% load static %}
+{% load mathfilters %}
 
-    {% block stylesheets %}
-        <link rel="stylesheet" type="text/css" href="{% static "../static/css/circle.css" %}" media="screen"/>
-    {% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{% static "../static/css/circle.css" %}" media="screen"/>
+{% endblock %}
 
-    {% block scripts %}
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-circle-progress/1.2.2/circle-progress.min.js"></script>
-    {% endblock %}
+{% block scripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-circle-progress/1.2.2/circle-progress.min.js"></script>
+{% endblock %}
 
-    {% block content %}
-        <div class="center2">
-            <div class="item3">
-                <b class="orange-text">{{ user }}</b>
+{% block content %}
+    <div class="center2">
+        <div class="item3">
+            <b class="orange-text">{{ user }}</b>
+        </div>
+
+        <div class="empty100"></div>
+
+        <div class="item2">
+            <h1 class="lineheight">Estagiário na Basis Tecnologia da Informação S.A. | Técnico em Desenvolvimento de
+                Sistemas | Graduando em Ciências da Computação | Fullstack Developer | Freelancer | Blogueiro</h1>
+        </div>
+
+        <div class="empty100"></div>
+
+        <div class="item3 container1" style="width: 100%;">
+            <h1 class="lessatention">Linguagens e Competências</h1>
+        </div>
+
+        <div class="empty50"></div>
+
+        <div class="item3 container2">
+            <div class="item1" style="width: 50%">
+                {% for skill in user.skill_set.all %}
+                    <div class="w3-light-grey" style="height: fit-content">
+                        <div class="w3-container orange-gradient"
+                             style="height:12px;width:{{ skill.proficiency }}%"></div>
+                    </div>
+                    <p>{{ skill.name }}</p>
+                {% empty %}
+                    <h4>Ainda não foi adicionada nenhuma competência ;-;</h4>
+                {% endfor %}
             </div>
-
-            <div class="empty100"></div>
-
-            <div class="item2">
-                <h1 class="lineheight">Estagiário na Basis Tecnologia da Informação S.A. | Técnico em Desenvolvimento de Sistemas | Graduando em Ciências da Computação | Fullstack Developer | Freelancer | Blogueiro</h1>
-            </div>
-
-            <div class="empty100"></div>
-
-            <div class="item3 container1" style="width: 100%;">
-                <h1 class="lessatention">Linguagens e Competências</h1>
-            </div>
-
-            <div class="empty50"></div>
-
-            <div class="item3 container2">
-                <div class="item1" style="width: 50%">
-                    {% for skill in user.skill_set.all %}
-                        <div class="w3-light-grey" style="height: fit-content">
-                            <div class="w3-container orange-gradient" style="height:12px;width:{{ skill.proficiency }}%"></div>
+            <div class="item1 container3 wrap" style="justify-content: space-around">
+                {% for language in user.language_set.all %}
+                    <div class="container2" style="max-width: 40%">
+                        <div class="circle {{ language }}">
+                            <div class="bar"></div>
+                            <div class="box"><span>{{ language.proficiency }}</span></div>
                         </div>
-                        <p>{{ skill.name }}</p>
-                    {% empty %}
-                        <h4 >Ainda não foi adicionada nenhuma competência ;-;</h4>
-                    {% endfor %}
-                </div>
-                <div class="item1 container3 wrap" style="justify-content: space-around">
-                    {% for language in user.language_set.all %}
-                        <div class="container2" style="max-width: 40%">
-                            <div class="circle {{ language }}">
-                                <div class="bar"></div>
-                                <div class="box"><span>{{ language.proficiency }}</span></div>
-                            </div>
-                            <p><b style="color: gray">{{ language }}</b></p>
-                        </div>
-                    {% endfor %}
-                </div>
+                        <p><b style="color: gray">{{ language }}</b></p>
+                    </div>
+                {% endfor %}
             </div>
+        </div>
 
-            <div class="empty50"></div>
+        <div class="empty50"></div>
 
-            <div class="item3 container2" style="align-items: flex-start">
-                <div class="item1 container4">
-                    <h1 class="lessatention">Formação</h1>
-                    {% for education in educations %}
-                        <div class="card">
-                            <p style="color: orange">{{ education.name }}</p>
-                            <p>De {{ education.start_date|date:"E Y" }} até
+        <div class="item3 container2" style="align-items: flex-start">
+            <div class="item1 container4">
+                <h1 class="lessatention">Formação</h1>
+                {% for education in educations %}
+                    <div class="card">
+                        <p style="color: orange">{{ education.name }}</p>
+                        <p>De {{ education.start_date|date:"E Y" }} até
                             {% if education.end_date is not None %}
                                 {{ education.end_date|date:"E Y" }}
                             {% else %}
                                 o presente
                             {% endif %}</p>
-                            <p style="color: grey">Em {{ education.place }}</p>
-                        </div>
-                    {% empty %}
-                        <div class="empty100"></div>
-                        <h4 >Ainda não foi adicionada nenhuma formação acadêmica ;-;</h4>
-                    {% endfor %}
-                </div>
-                <div class="item1 container4">
-                    <h1 class="lessatention">Experiência</h1>
-                    {% for experience in experiences %}
-                        <div class="card">
-                            <p style="color: orange">{{ experience.name }}</p>
-                            <p>{{ experience.position }}</p>
-                            <p>De {{ experience.start_date|date:"E Y" }} até
+                        <p style="color: grey">Em {{ education.place }}</p>
+                    </div>
+                {% empty %}
+                    <div class="empty100"></div>
+                    <h4>Ainda não foi adicionada nenhuma formação acadêmica ;-;</h4>
+                {% endfor %}
+            </div>
+            <div class="item1 container4">
+                <h1 class="lessatention">Experiência</h1>
+                {% for experience in experiences %}
+                    <div class="card">
+                        <p style="color: orange">{{ experience.name }}</p>
+                        <p>{{ experience.position }}</p>
+                        <p>De {{ experience.start_date|date:"E Y" }} até
                             {% if experience.end_date is not None %}
                                 {{ experience.end_date|date:"E Y" }}
                             {% else %}
                                 o presente
                             {% endif %}</p>
-                            <p style="color: grey">Em {{ experience.place }}</p>
-                        </div>
-                    {% empty %}
-                        <div class="empty100"></div>
-                        <h4 >Ainda não foi adicionada nenhuma experiência profissional ;-;</h4>
-                    {% endfor %}
-                </div>
-            </div>
-
-            <div class="empty50"></div>
-
-            <div class="item3 container1" style="width: 100%;">
-                <h1 class="lessatention">Projetos</h1>
-            </div>
-
-            <div class="item3 container1">
-                {% for project in projects %}
-                    <div class="item2">
-                        <h3 class="evenlessatention">{{ project.name }}</h3>
-                        <h4>{{ project.description }}</h4>
-                        {% if project.link|length == 11 %}
-                            <iframe width="560"
-                                    height="315"
-                                    src="https://www.youtube.com/embed/{{ project.link }}"
-                                    title="YouTube video player" frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-                            </iframe>
-                        {% else %}
-                            <a href="{{ project.link }}" class="link" style="font-size: 20px">Link para o projeto</a>
-                        {% endif %}
+                        <p style="color: grey">Em {{ experience.place }}</p>
                     </div>
-                    <div class="empty50"></div>
                 {% empty %}
                     <div class="empty100"></div>
-                    <h4 >Ainda não foi adicionado nenhum projeto ;-;</h4>
+                    <h4>Ainda não foi adicionada nenhuma experiência profissional ;-;</h4>
                 {% endfor %}
             </div>
         </div>
-        <script>
-            let options = {}
-            {% for language in user.language_set.all %}
-                str = "{{ language.proficiency|div:100 }}";
-                str = str.replace(",", ".")
-                options = {
-                    startAngle: -1.55,
-                    size: 150,
-                    value: parseFloat(str),
-                    fill: {gradient: ['#FFA500FF', '#C76716FF']}
-                }
-                $(".{{ language }} .bar").circleProgress(options);
-            {% endfor %}
-        </script>
 
-    {% endblock %}
+        <div class="empty50"></div>
+
+        <div class="item3 container1" style="width: 100%;">
+            <h1 class="lessatention">Projetos</h1>
+        </div>
+
+        <div class="item3 container1">
+            {% for project in projects %}
+                <div class="item2">
+                    <h3 class="evenlessatention">{{ project.name }}</h3>
+                    <h4>{{ project.description }}</h4>
+                    {% if project.link|length == 11 %}
+                        <iframe width="560"
+                                height="315"
+                                src="https://www.youtube.com/embed/{{ project.link }}"
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                        </iframe>
+                    {% else %}
+                        <a href="{{ project.link }}" class="link" style="font-size: 20px">Link para o projeto</a>
+                    {% endif %}
+                </div>
+                <div class="empty50"></div>
+            {% empty %}
+                <div class="empty100"></div>
+                <h4>Ainda não foi adicionado nenhum projeto ;-;</h4>
+            {% endfor %}
+        </div>
+    </div>
+    <script>
+        let options = {}
+        {% for language in user.language_set.all %}
+            str = "{{ language.proficiency|div:100 }}";
+            str = str.replace(",", ".")
+            options = {
+                startAngle: -1.55,
+                size: 150,
+                value: parseFloat(str),
+                fill: {gradient: ['#FFA500FF', '#C76716FF']}
+            }
+            $(".{{ language }} .bar").circleProgress(options);
+        {% endfor %}
+    </script>
+
+{% endblock %}

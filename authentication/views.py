@@ -5,11 +5,12 @@ import urllib
 from django.conf import settings
 from django.contrib import messages
 from django.core.mail import send_mail
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 
 from authentication.forms import EmailForm
+from authentication.models import User
 from blog.models import Post
-from authentication.models import User, Skill
+
 
 def home(request):
     num_blog_posts = 2
@@ -30,6 +31,7 @@ def home(request):
 
     return render(request, 'authentication/home.html', context)
 
+
 def about(request):
     try:
         user = User.objects.get(username=os.environ.get("USER"))
@@ -44,7 +46,6 @@ def about(request):
         if (project.extract_video_id(project.link) != None):
             project.link = project.extract_video_id(project.link)
 
-
     context = {
         'user': user,
         'projects': projects,
@@ -53,6 +54,7 @@ def about(request):
     }
 
     return render(request, 'authentication/about.html', context)
+
 
 def contact(request):
     messageSent = False
@@ -68,7 +70,7 @@ def contact(request):
                     'response': recaptcha_response
                 }
                 data = urllib.parse.urlencode(values).encode()
-                req =  urllib.request.Request(url, data=data)
+                req = urllib.request.Request(url, data=data)
                 response = urllib.request.urlopen(req)
                 result = json.loads(response.read().decode())
                 ''' End reCAPTCHA validation '''
@@ -89,7 +91,6 @@ def contact(request):
     else:
         form = EmailForm()
 
-
     context = {
         'key': os.environ.get('RECAPTCHA_SITE_KEY'),
         'form': form,
@@ -99,10 +100,12 @@ def contact(request):
 
     return render(request, 'authentication/contact.html', context)
 
-def truncate(str, num_chars = 384):
+
+def truncate(str, num_chars=384):
     if str != '':
-        special_chars = {'~', ':', "'", '+', '[', '\\', '@', '^', '{', '%', '(', '-', '"', '*', '|', ',', '&', '<', '`', '}', '.', '_', '=',
-         ']', '!', '>', ';', '?', '#', '$', ')', '/', ' '}
+        special_chars = {'~', ':', "'", '+', '[', '\\', '@', '^', '{', '%', '(', '-', '"', '*', '|', ',', '&', '<', '`',
+                         '}', '.', '_', '=',
+                         ']', '!', '>', ';', '?', '#', '$', ')', '/', ' '}
 
         str = str[:num_chars]
 

@@ -1,5 +1,6 @@
 from django import forms
 
+
 class EmailForm(forms.Form):
     emaildummy = 'dummy@dummy.com'
     name = forms.CharField(
@@ -12,9 +13,9 @@ class EmailForm(forms.Form):
             'class': 'input100'}))
     message = forms.CharField(
         widget=forms.Textarea(attrs={
-        'placeholder': 'Digite aqui a sua mensagem',
-        'style': 'wrap: hard; height: 90px',
-        'class': 'input100'}), max_length=500)
+            'placeholder': 'Digite aqui a sua mensagem',
+            'style': 'wrap: hard; height: 90px',
+            'class': 'input100'}), max_length=500)
     email_dummy = forms.EmailField(
         widget=forms.HiddenInput(attrs={
             'value': emaildummy,

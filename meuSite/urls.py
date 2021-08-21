@@ -21,4 +21,3 @@ urlpatterns = [
     path('blog/', include('blog.urls')),
     path('', include('authentication.urls'))
 ]
-

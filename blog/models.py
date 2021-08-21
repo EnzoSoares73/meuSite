@@ -1,13 +1,18 @@
+from datetime import datetime, timedelta, timezone
+
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-from datetime import datetime, timedelta, timezone, date
+
 from authentication.models import User
+
 
 def fixed_date():
     return datetime.now(timezone(timedelta(hours=-3))) + timedelta(hours=1)
 
+
 def get_sentinel_user():
     return User.generate_sentinel()
+
 
 class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET(get_sentinel_user), null=True, default='Anonymous')
@@ -28,7 +33,6 @@ class Post(models.Model):
             num = len(lista_blog_posts)
         return lista_blog_posts[:num]
 
-
     def time_to_be_published(self):
         if self.pub_date > datetime.now(timezone(timedelta(hours=-3))):
             temp = self.pub_date - datetime.now(timezone(timedelta(hours=-3)))
@@ -40,10 +44,10 @@ class Post(models.Model):
     def format_timedelta(self, timedeltatobeformatted):
         var = timedeltatobeformatted.total_seconds()
 
-        days = var // (24*60*60)
-        var -= days * (24*60*60)
-        hours = var // (60*60)
-        var -= hours * (60*60)
+        days = var // (24 * 60 * 60)
+        var -= days * (24 * 60 * 60)
+        hours = var // (60 * 60)
+        var -= hours * (60 * 60)
         minutes = var // 60
 
         str = f"{int(days)}"
@@ -53,7 +57,7 @@ class Post(models.Model):
         else:
             str = str + " dias, "
 
-        str = str+ f"{int(hours)}"
+        str = str + f"{int(hours)}"
 
         if hours == 1:
             str = str + " hora "

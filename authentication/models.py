@@ -1,11 +1,15 @@
 from urllib.parse import urlparse, parse_qs
-from django.db import models
+
 from django.contrib.auth.models import AbstractUser
+from django.db import models
 from django.db.models import Model
+
 from authentication import validators
+
 
 def get_sentinel_user():
     return User.generate_sentinel()
+
 
 class User(AbstractUser):
     about = models.TextField("Sobre", null=True, default='Uma descrição sobre mim')
@@ -27,6 +31,7 @@ class User(AbstractUser):
     def generate_sentinel(cls):
         return User.objects.get_or_create(username="Anonymous")[0]
 
+
 class Skill(models.Model):
     name = models.CharField("Nome", max_length=20)
     proficiency = models.IntegerField("proeficiência", validators=[validators.validate_range])
@@ -34,6 +39,7 @@ class Skill(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class Experience(models.Model):
     name = models.CharField("Nome da empresa", max_length=50)
@@ -46,6 +52,7 @@ class Experience(models.Model):
     def __str__(self):
         return self.name
 
+
 class Education(models.Model):
     name = models.CharField("Nome da instituição", max_length=50)
     start_date = models.DateField("Data de começo", default=None)
@@ -56,6 +63,7 @@ class Education(models.Model):
     def __str__(self):
         return self.name
 
+
 class Language(models.Model):
     name = models.CharField("Nome", max_length=20)
     proficiency = models.IntegerField("proeficiência", validators=[validators.validate_range])
@@ -63,6 +71,7 @@ class Language(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class Project(models.Model):
     name = models.CharField("Nome", max_length=60)

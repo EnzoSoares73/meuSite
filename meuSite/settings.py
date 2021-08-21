@@ -15,7 +15,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
@@ -35,7 +34,6 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 DEBUG = int(os.environ.get("DEBUG", default=0))
 
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
-
 
 # Application definition
 
@@ -90,13 +88,12 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'meu_site',
         'USER': 'enzos',
-        'PASSWORD': os.environ.get('DB_PASSWORD'),
-        'HOST': 'db',   # Name of the db service in docker-compose.yml
+        'PASSWORD': os.environ.get("DB_PASSWORD"),
+        'HOST': 'db',  # Name of the db service in docker-compose.yml
         'PORT': '3306',
 
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -116,7 +113,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
@@ -129,7 +125,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
@@ -164,3 +159,6 @@ EMAIL_HOST_USER = os.environ.get("EMAIL")
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_PASSWORD")
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
