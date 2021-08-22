@@ -78,11 +78,10 @@
     <div class="empty50"></div>
 
     <div class="flex-start container" style="position:relative">
-        <div class="item1 margin"><i class="fab fa-facebook-square fa-5x" style="color:orange"></i></div>
-        <div class="item1 margin"><i class="fab fa-linkedin fa-5x" style="color:orange"></i></div>
-        <div class="item1 margin"><i class="fas fa-phone-square-alt fa-5x" style="color:orange"></i></div>
-        <div class="item1 margin"><i class="fas fa-envelope-square fa-5x" style="color:orange"></i></div>
-        <div class="item1 margin"><i class="fab fa-github-square fa-5x" style="color:orange"></i></div>
+        <div class="item1 margin"><a href="{{ user.facebook }}"><i class="fab fa-facebook-square fa-5x" style="color:orange"></i></a></div>
+        <div class="item1 margin"><a href="{{ user.linkedin }}"><i class="fab fa-linkedin fa-5x" style="color:orange"></i></a></div>
+        <div class="item1 margin"><a href="{% url "authentication:contact" %}"><i class="fas fa-envelope-square fa-5x" style="color:orange"></i></a></div>
+        <div class="item1 margin"><a href="{{ user.github }}"><i class="fab fa-github-square fa-5x" style="color:orange"></i></a></div>
     </div>
     <div class="empty100"></div>
 
