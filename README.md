@@ -49,6 +49,8 @@ Crie um usuário admin usando o comando:
 docker exec meu_site python manage.py createsuperuser
 ```
 
+O usuário deve ter o mesmo nome de `USER` em `.env`
+
 ## Feito com
 
 * [PyCharm](https://www.jetbrains.com/pycharm/) - IDE usado
