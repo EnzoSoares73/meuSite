@@ -11,6 +11,18 @@ from authentication.forms import EmailForm
 from authentication.models import User
 from blog.models import Post
 
+def landing(request):
+
+    if User.objects.get(username=os.environ.get("USER")) is not None:
+        user = User.objects.get(username=os.environ.get("USER"))
+    else:
+        user = User.generate_sentinel()
+
+    context = {
+        'user': user
+    }
+
+    return render(request, 'authentication/landing.html', context)
 
 def home(request):
     num_blog_posts = 2
