@@ -94,7 +94,7 @@ def contact(request):
 
                 if result['success']:
                     cd = form.cleaned_data
-                    subject = "Sending an email with Django"
+                    subject = "Contato enzosoares.com"
                     message = cd['message']
                     recipient = [os.environ.get("EMAIL")]
                     send_mail(subject, message,
