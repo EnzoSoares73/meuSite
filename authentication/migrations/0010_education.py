@@ -18,7 +18,8 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(max_length=30, verbose_name='Nome da instituição')),
                 ('start_date', models.DateField(default=None, verbose_name='Data de começo')),
                 (
-                'end_date', models.DateField(blank=True, default=None, null=True, verbose_name='Data de desligamento')),
+                    'end_date',
+                    models.DateField(blank=True, default=None, null=True, verbose_name='Data de desligamento')),
                 ('position', models.CharField(max_length=20, verbose_name='Cargo')),
                 ('place', models.CharField(max_length=30, verbose_name='Localidade')),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),

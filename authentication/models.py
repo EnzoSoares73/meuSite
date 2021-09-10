@@ -81,7 +81,8 @@ class Project(models.Model):
     def __str__(self):
         return self.name
 
-    def extract_video_id(self, url):
+    @staticmethod
+    def extract_video_id(url):
         query = urlparse(url)
         if query.hostname == 'youtu.be':
             return query.path[1:]

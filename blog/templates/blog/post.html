@@ -9,7 +9,9 @@
 
 {% block scripts %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
+    <!--suppress JSUnresolvedFunction -->
+    <script>// noinspection JSUnresolvedVariable
+    hljs.initHighlightingOnLoad();</script>
 {% endblock %}
 
 {% block title %}{{ blog.title }}{% endblock %}

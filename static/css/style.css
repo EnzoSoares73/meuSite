@@ -177,14 +177,6 @@ html, body {
     width: 80%
 }
 
-.about {
-    height: 100px;
-    font-size: 25px;
-    width: 60%;
-    float: left;
-    overflow: hidden;
-}
-
 .orange-gradient {
     background: linear-gradient(60deg, orange 0%, #c76716 100%);
     transition: 500ms linear;

@@ -40,7 +40,8 @@ class Post(models.Model):
             return f"Será publicado em {string}"
         return "Já publicado"
 
-    def format_timedelta(self, timedeltatobeformatted):
+    @staticmethod
+    def format_timedelta(timedeltatobeformatted):
         var = timedeltatobeformatted.total_seconds()
 
         days = var // (24 * 60 * 60)
