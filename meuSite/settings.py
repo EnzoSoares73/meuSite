@@ -54,8 +54,10 @@ INSTALLED_APPS = [
     'mathfilters',
     'blog.apps.BlogConfig',
     'authentication.apps.AuthenticationConfig',
-    'mod_wsgi.server'
 ]
+
+if DEBUG == 0:
+    INSTALLED_APPS.append('mod_wsgi.server')
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
