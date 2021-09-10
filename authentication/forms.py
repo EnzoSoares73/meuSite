@@ -5,7 +5,7 @@ class EmailForm(forms.Form):
     emaildummy = 'dummy@dummy.com'
     name = forms.CharField(
         widget=forms.TextInput(attrs={
-            'placeholder': 'Name',
+            'placeholder': 'Nome',
             'class': 'input100'}))
     email = forms.EmailField(
         widget=forms.EmailInput(attrs={
