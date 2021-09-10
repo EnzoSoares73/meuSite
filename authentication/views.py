@@ -1,6 +1,7 @@
 import json
 import os
-import urllib
+import urllib.request
+import urllib.parse
 
 from django.conf import settings
 from django.contrib import messages
@@ -11,8 +12,8 @@ from authentication.forms import EmailForm
 from authentication.models import User
 from blog.models import Post
 
-def landing(request):
 
+def landing(request):
     if User.objects.get(username=os.environ.get("USER")) is not None:
         user = User.objects.get(username=os.environ.get("USER"))
     else:
@@ -23,6 +24,7 @@ def landing(request):
     }
 
     return render(request, 'authentication/landing.html', context)
+
 
 def home(request):
     num_blog_posts = 2
@@ -55,7 +57,7 @@ def about(request):
     experiences = user.experience_set.order_by('-start_date')
 
     for project in projects:
-        if (project.extract_video_id(project.link) is not None):
+        if project.extract_video_id(project.link) is not None:
             project.link = project.extract_video_id(project.link)
 
     context = {
@@ -69,12 +71,12 @@ def about(request):
 
 
 def contact(request):
-    messageSent = False
+    message_sent = False
     if request.method == 'POST':
         form = EmailForm(request.POST)
         if form.is_valid():
             if form.cleaned_data['email_dummy'] == form.emaildummy:
-                #Começo reCAPTCHA
+                # Começo reCAPTCHA
                 recaptcha_response = request.POST.get('g-recaptcha-response')
                 url = 'https://www.google.com/recaptcha/api/siteverify'
                 values = {
@@ -88,7 +90,7 @@ def contact(request):
                     raise ValueError from None
                 response = urllib.request.urlopen(req)
                 result = json.loads(response.read().decode())
-                #Fim reCAPTCHA
+                # Fim reCAPTCHA
 
                 if result['success']:
                     cd = form.cleaned_data
@@ -97,7 +99,7 @@ def contact(request):
                     recipient = [os.environ.get("EMAIL")]
                     send_mail(subject, message,
                               settings.DEFAULT_FROM_EMAIL, recipient)
-                    messageSent = True
+                    message_sent = True
                 else:
                     messages.error(request, 'reCAPTCHA inválido.')
             else:
@@ -109,7 +111,7 @@ def contact(request):
     context = {
         'key': os.environ.get('RECAPTCHA_SITE_KEY'),
         'form': form,
-        'messageSent': messageSent,
+        'message_sent': message_sent,
         'messages': messages.get_messages(request)
     }
 
