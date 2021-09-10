@@ -1,0 +1,14 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}Administração do Site de Enzo Soares{% endblock %}
+
+{% block extrahead %}
+    <link rel="shortcut icon" type="image/x-icon" href="{% static "ico/favicon.ico" %}">
+{% endblock %}
+
+{% block branding %}
+    <h1 id="site-name"><a href="{% url 'admin:index' %}">Administração</a></h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
