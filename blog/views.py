@@ -12,9 +12,8 @@ def append_strings_in_list(list):
 def taggify_start(content):
     text = f'<{content[0]}'
     if content[1] != '':
-        text += f' class="{content[1]}">'
-    else:
-        text += '>'
+        text += f' class="{content[1]}"'
+    text += '>'
     return text
 
 
@@ -46,7 +45,7 @@ def markdown_converter(text):
             }
         },
         'bold_signal': {
-            '//': {
+            '--': {
                 'b': ''
             }
         },

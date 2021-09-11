@@ -1,5 +1,8 @@
 from django import forms
 
+from authentication.models import User
+
+
 class EmailForm(forms.Form):
     emaildummy = 'dummy@dummy.com'
     name = forms.CharField(
@@ -20,3 +23,12 @@ class EmailForm(forms.Form):
             'value': emaildummy,
             'required': '',
         }))
+
+class UserForm(forms.ModelForm):
+    ddd = forms.CharField(widget=forms.TextInput(attrs={
+            'style': 'widht: 90'})
+    )
+    class Meta:
+        model = User
+        fields = ('__all__')
+
