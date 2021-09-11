@@ -15,10 +15,10 @@ def get_sentinel_user():
 
 
 class Post(models.Model):
-    user = models.ForeignKey(User, on_delete=models.SET(get_sentinel_user), null=True, default='Anonymous')
-    pub_date = models.DateTimeField("Data de publicação", null=True, default=fixed_date)
-    title = models.CharField("Título", max_length=50, null=True, default='')
-    text = models.TextField("Texto", null=True, default='')
+    user = models.ForeignKey(User, on_delete=models.SET(get_sentinel_user), null=True, default='Anonymous', verbose_name=User._meta.verbose_name)
+    pub_date = models.DateTimeField('Data de publicação', null=True, default=fixed_date)
+    title = models.CharField('Título', max_length=50, null=True, default='')
+    text = models.TextField('Texto', null=True, default='')
 
     def __str__(self):
         return self.title
@@ -27,7 +27,7 @@ class Post(models.Model):
     def return_published_posts(cls, num=None):
         lista_blog_posts = []
         for post in Post.objects.order_by('-pub_date'):
-            if post.time_to_be_published() == "Já publicado":
+            if post.time_to_be_published() == 'Já publicado':
                 lista_blog_posts.append(post)
         if num is None:
             num = len(lista_blog_posts)
@@ -37,8 +37,8 @@ class Post(models.Model):
         if self.pub_date > datetime.now(timezone(timedelta(hours=-3))):
             temp = self.pub_date - datetime.now(timezone(timedelta(hours=-3)))
             string = self.format_timedelta(temp)
-            return f"Será publicado em {string}"
-        return "Já publicado"
+            return f'Será publicado em {string}'
+        return 'Já publicado'
 
     @staticmethod
     def format_timedelta(timedeltatobeformatted):
@@ -50,25 +50,25 @@ class Post(models.Model):
         var -= hours * (60 * 60)
         minutes = var // 60
 
-        string = f"{int(days)}"
+        string = f'{int(days)}'
 
         if days == 1:
-            string = string + " dia "
+            string = string + ' dia '
         else:
-            string = string + " dias, "
+            string = string + ' dias, '
 
-        string = string + f"{int(hours)}"
+        string = string + f'{int(hours)}'
 
         if hours == 1:
-            string = string + " hora "
+            string = string + ' hora '
         else:
-            string = string + " horas e "
+            string = string + ' horas e '
 
-        string = string + f"{int(minutes)}"
+        string = string + f'{int(minutes)}'
 
         if minutes == 1:
-            string = string + " minuto "
+            string = string + ' minuto '
         else:
-            string = string + " minutos"
+            string = string + ' minutos'
 
         return string

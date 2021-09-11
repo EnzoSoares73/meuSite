@@ -1,6 +1,5 @@
 from django import forms
 
-
 class EmailForm(forms.Form):
     emaildummy = 'dummy@dummy.com'
     name = forms.CharField(

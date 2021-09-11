@@ -1,16 +1,20 @@
 from django.contrib import admin
 
-from authentication.models import User
+from .forms import PostForm
 from .models import Post
-
-
-class UsersInline(admin.StackedInline):
-    model = User
-    extra = 3
-
 
 class PostAdmin(admin.ModelAdmin):
     list_display = ('title', 'pub_date', 'time_to_be_published')
 
+    fieldsets = (
+        (None, {
+            'fields': ('user', 'pub_date')
+        }),
+        ('Texto', {
+            'fields': ['title', 'text']
+        }),
+    )
+
+    form = PostForm
 
 admin.site.register(Post, PostAdmin)
