@@ -7,7 +7,7 @@ Como instalar e rodar esse projeto.
 
 ### Prerequisitos
 
-As únicas tecnologias tecnologias necessárias em primeiro momento são `Git` e `Docker`.
+As únicas tecnologias tecnologias necessárias são `Git` e `Docker`.
 
 ### Clonando
 
@@ -55,7 +55,6 @@ O usuário deve ter o mesmo nome de `USER` em `.env`
 
 * [PyCharm](https://www.jetbrains.com/pycharm/) - IDE usado
 * [Django](https://www.djangoproject.com/) - WEB framework
-* [Nginx](https://www.nginx.com/) - Servidor WEB
 
 ## Autor
 
