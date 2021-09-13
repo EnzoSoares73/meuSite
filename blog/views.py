@@ -25,17 +25,17 @@ def markdown_converter(text):
     signals = {
         'subsubtitle_signal': {
             '###': {
-                'h3': ''
+                'h5': ''
             }
         },
         'subtitle_signal': {
             '##': {
-                'h2': ''
+                'h4': ''
             }
         },
         'title_signal': {
             '#': {
-                'h1': ''
+                'h3': ''
             }
         },
         'code_signal': {
