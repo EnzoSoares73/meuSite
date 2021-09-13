@@ -7,7 +7,7 @@ class PostForm(forms.ModelForm):
     text = forms.CharField(
         widget=forms.Textarea(attrs={
             'rows': 20,
-            'cols': 200}),
+            'cols': 100}),
         label='Texto')
 
     class Meta:
