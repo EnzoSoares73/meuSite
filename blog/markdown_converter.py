@@ -27,17 +27,17 @@ def markdown_converter(text):
         },
         'subsubtitle_signal': {
             ';;;': {
-                'h5': ''
+                'h5': 'gray-text'
             }
         },
         'subtitle_signal': {
             ';;': {
-                'h4': ''
+                'h4': 'gray-text'
             }
         },
         'title_signal': {
             ';': {
-                'h3': ''
+                'h3': 'gray-text'
             }
         },
         'bold_signal': {
