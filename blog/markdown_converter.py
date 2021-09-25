@@ -59,40 +59,42 @@ def verify_if_pos_is_inside_cod(pos, locations):
     return True
 
 
-def markdown_converter(text):
-    signals = {
-        'code_signal': {
-            '`': {
-                'pre': 'container',
-                'code': 'language-python code'
-            }
-        },
-        'subsubtitle_signal': {
-            '###': {
-                'h5': 'gray-text'
-            }
-        },
-        'subtitle_signal': {
-            '##': {
-                'h4': 'gray-text'
-            }
-        },
-        'title_signal': {
-            '#': {
-                'h3': 'gray-text'
-            }
-        },
-        'bold_signal': {
-            '--': {
-                'b': ''
-            }
-        },
-        'list_signal': {
-            '**': {
-                'li': ''
+def markdown_converter(text, signals=None):
+
+    if signals is None:
+        signals = {
+            'code_signal': {
+                '`': {
+                    'pre': 'container',
+                    'code': 'language-python code'
+                }
+            },
+            'subsubtitle_signal': {
+                '###': {
+                    'h5': 'gray-text'
+                }
+            },
+            'subtitle_signal': {
+                '##': {
+                    'h4': 'gray-text'
+                }
+            },
+            'title_signal': {
+                '#': {
+                    'h3': 'gray-text'
+                }
+            },
+            'bold_signal': {
+                '--': {
+                    'b': ''
+                }
+            },
+            'list_signal': {
+                '**': {
+                    'li': ''
+                }
             }
         }
-    }
 
     tag_code_start = ''
     tag_code_end = ''
