@@ -1,33 +1,31 @@
-version: "3.3"
 services:
-  db:
-    image: mysql:5.7
-    container_name: mysql_db
-    ports:
-      - '3307:3306'
-    environment:
-      MYSQL_DATABASE: '${DB_NAME}'
-      MYSQL_USER: '${DB_USER}'
-      MYSQL_PASSWORD: '${DB_PASSWORD}'
-      MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
-
-  python:
-    image: python:3.8
-    container_name: python_interpreter
-    working_dir: /usr/src/meu_site
-    tty: true
-    stdin_open: true
-    command: python3
-
   web:
-    build: .
-    container_name: meu_site
-    command: bash -c "python3 manage.py migrate && python3 manage.py runserver 0.0.0.0:8000"
-    restart: always
+    container_name: web
+    build:
+      context: ./app
+      dockerfile: Dockerfile
     volumes:
-      - .:/app
+      - ./app/:/home/web/app
     ports:
       - "8000:8000"
+    env_file:
+      - .env
     depends_on:
       - db
-      - python
+
+  db:
+    image: postgres:latest
+    container_name: db
+    volumes:
+      - dev:/var/lib/postgresql/data/
+    ports:
+      - ${SQL_PORT}:${SQL_PORT}
+    environment:
+      - POSTGRES_USER=${SQL_USER}
+      - POSTGRES_PASSWORD=${SQL_PASSWORD}
+      - POSTGRES_DB=${SQL_DATABASE}
+    env_file:
+      - .env
+
+volumes:
+  dev:

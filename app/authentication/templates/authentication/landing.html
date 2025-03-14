@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{% static "css/animation.css" %}" media="screen"/>
+{% endblock %}
+
+{% block content %}
+
+    <div class="empty100"></div>
+
+    <div class="center1">
+        <h1 class="orange-text lineheight">Olá, <br><b class="atention">eu me chamo </b><b
+                class="orange-text">{{ user.first_name }}</b></h1>
+    </div>
+    <div class="center1 typewriter" style="top: 60%">
+        <h1>Desenvolvedor de Software</h1>
+    </div>
+
+{% endblock %}
