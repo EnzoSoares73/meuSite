@@ -11,7 +11,7 @@ ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
 # Application definition
 
 INSTALLED_APPS = ['django.contrib.admin', 'django.contrib.auth', 'django.contrib.contenttypes',
-    'django.contrib.sessions', 'django.contrib.messages', 'django.contrib.staticfiles', 'mathfilters',
+    'django.contrib.sessions', 'django.contrib.messages', 'django.contrib.staticfiles',
     'blog.apps.BlogConfig', 'authentication.apps.AuthenticationConfig', ]
 
 MIDDLEWARE = ['django.middleware.security.SecurityMiddleware',
@@ -20,14 +20,14 @@ MIDDLEWARE = ['django.middleware.security.SecurityMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware', ]
 
-ROOT_URLCONF = 'meuSite.urls'
+ROOT_URLCONF = 'meu_site.urls'
 
 TEMPLATES = [{'BACKEND': 'django.template.backends.django.DjangoTemplates', 'DIRS': [BASE_DIR / 'templates'],
     'APP_DIRS': True, 'OPTIONS': {'context_processors': ['django.template.context_processors.debug',
         'django.template.context_processors.request', 'django.contrib.auth.context_processors.auth',
         'django.contrib.messages.context_processors.messages', ], }, }, ]
 
-WSGI_APPLICATION = 'meuSite.wsgi.application'
+WSGI_APPLICATION = 'meu_site.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases

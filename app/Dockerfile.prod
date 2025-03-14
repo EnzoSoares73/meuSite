@@ -18,8 +18,8 @@ RUN poetry install --no-root && rm -rf $POETRY_CACHE_DIR
 # The runtime image, used to just run the code provided its virtual environment
 FROM python:3.13-slim AS runtime
 
-ENV VIRTUAL_ENV=/app/.venv \
-    PATH="/app/.venv/bin:$PATH"
+ENV VIRTUAL_ENV=/app/.venv
+ENV PATH="/app/.venv/bin:$PATH"
 ENV APP_HOME=/home/web/app
 
 RUN mkdir -p /home/web
@@ -27,18 +27,20 @@ RUN mkdir -p /home/web
 RUN addgroup --system web && adduser --system web --ingroup web
 
 RUN mkdir $APP_HOME
+RUN mkdir $APP_HOME/staticfiles
 WORKDIR $APP_HOME
-
 
 COPY --from=builder ${VIRTUAL_ENV} ${VIRTUAL_ENV}
 COPY . $APP_HOME
 
+RUN . ${VIRTUAL_ENV}/bin/activate
+
 # chown all the files to the app user
 RUN chown -R web:web $APP_HOME
 
-RUN ["chmod", "+x", "/home/web/app/entrypoint.sh"]
+RUN ["chmod", "+x", "/home/web/app/entrypoint.prod.sh"]
 
 # change to the app user
 USER web
 
-ENTRYPOINT ["/home/web/app/entrypoint.sh"]
+ENTRYPOINT ["/home/web/app/entrypoint.prod.sh"]
