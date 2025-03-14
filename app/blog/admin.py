@@ -11,7 +11,7 @@ class PostAdmin(admin.ModelAdmin):
             'fields': ('user', 'pub_date')
         }),
         ('Texto', {
-            'fields': ['title', 'text']
+            'fields': ['title', 'subtitle', 'text']
         }),
     )
 
