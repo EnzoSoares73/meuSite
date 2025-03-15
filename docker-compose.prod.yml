@@ -48,7 +48,7 @@ services:
     volumes:
       - letsencrypt:/etc/letsencrypt:rw
       - acme-challenge:/var/www/certbot:rw
-    command: certonly -d enzo.soares.digital --email enzo@soares.digital --agree-tos --no-eff-email --webroot --webroot-path=/var/www/certbot
+    command: certonly -d enzo.soares.digital --email enzo@soares.digital --agree-tos --no-eff-email --webroot --webroot-path=/var/www/certbot -v
     depends_on:
       - nginx
 
