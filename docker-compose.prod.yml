@@ -34,6 +34,8 @@ services:
     volumes:
       - static_volume:/home/web/app/staticfiles
       - media_volume:/home/web/app/media
+      - letsencrypt1:/etc/letsencrypt
+      - letsencrypt2:/var/lib/letsencrypt
     ports:
       - "443:433"
       - "80:80"
@@ -61,8 +63,21 @@ services:
       - BACKUP_KEEP_WEEKS=4
       - BACKUP_KEEP_MONTHS=6
 
+
+  certbot:
+    image: certbot/certbot
+    container_name: certbot
+    volumes:
+      - letsencrypt1:/etc/letsencrypt
+      - letsencrypt2:/var/lib/letsencrypt
+      - acme-challenge:/var/www/certbot
+    command: certonly -d enzo.soares.digital --email enzo@soares.digital --agree-tos --no-eff-email --webroot --webroot-path=/var/www/certbot
+
 volumes:
   prod:
   static_volume:
   media_volume:
   backup:
+  letsencrypt1:
+  letsencrypt2:
+  acme-challenge:
