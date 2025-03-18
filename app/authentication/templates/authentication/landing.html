@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load i18n %}
 
 {% block stylesheets %}
     <link rel="stylesheet" type="text/css" href="{% static "css/animation.css" %}" media="screen"/>
@@ -10,11 +11,11 @@
     <div class="empty100"></div>
 
     <div class="center1">
-        <h1 class="orange-text lineheight">Olá, <br><b class="atention">eu me chamo </b><b
+        <h1 class="orange-text lineheight">{% translate "Olá" %}, <br><b class="atention">{% translate "eu me chamo" %} </b><b
                 class="orange-text">{{ user.first_name }}</b></h1>
     </div>
     <div class="center1 typewriter" style="top: 60%">
-        <h1>Desenvolvedor de Software</h1>
+        <h1>{% translate "Desenvolvedor de Software" %}</h1>
     </div>
 
 {% endblock %}

@@ -2,9 +2,11 @@ import markdown2
 from django.shortcuts import render, get_object_or_404
 
 from .models import Post
+from .service import return_published_posts
+
 
 def index(request):
-    lista_blog_posts = Post.return_published_posts()
+    lista_blog_posts = return_published_posts(request.LANGUAGE_CODE)
     context = {
         'lista_blog_posts': lista_blog_posts
     }

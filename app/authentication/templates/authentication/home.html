@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load i18n %}
 
 {% block stylesheets %}
     <link rel="stylesheet" type="text/css" href="{% static "css/animation.css" %}"
@@ -16,11 +17,11 @@
     <div class="empty100"></div>
 
     <div class="center1">
-        <h1 class="orange-text lineheight">Olá, <br><b class="atention">eu me chamo </b><b
+        <h1 class="orange-text lineheight">{% translate "Olá" %}, <br><b class="atention">{% translate "eu me chamo" %} </b><b
                 class="orange-text">{{ user.first_name }}</b></h1>
     </div>
     <div class="center1 typewriter" style="top: 60%">
-        <h1>Desenvolvedor de Software</h1>
+        <h1>{% translate "Desenvolvedor de Software" %}</h1>
     </div>
 
     <div class="empty25"></div>
@@ -50,7 +51,7 @@
 
     <div class="empty50"></div>
 
-    <h1 class="lessatention" id="arrow_destination">Minhas últimas postagens</h1>
+    <h1 class="lessatention" id="arrow_destination">{% translate "Minhas últimas postagens" %}</h1>
     <div class="container">
         {% for post in lista_blog_posts %}
             <div class="item1">
@@ -62,19 +63,19 @@
                     {{ post.text }}
                 </div>
                 <a href="{% url 'blog:post' post.id %}" class="link"
-                   style="font-size: 20px">Continuar a ler</a>
+                   style="font-size: 20px">{%  translate "Continuar a ler" %}</a>
             </div>
         {% empty %}
             <div class="item1">
                 <div class="empty100"></div>
-                <h4>Ainda não tem nada escrito ;-;</h4>
+                <h4>{% translate "Ainda não tem nada escrito ;-;" %}</h4>
             </div>
         {% endfor %}
     </div>
 
     <div class="empty100"></div>
 
-    <h1 class="lessatention">Sobre mim</h1>
+    <h1 class="lessatention">{% translate "Sobre mim" %}</h1>
     <div class="container">
         <div class="item1" style="flex-grow: 3; max-width: 70%">
             <div class="blog-post">
@@ -86,15 +87,15 @@
     </div>
     <div class="empty100"></div>
 
-    <h1 class="lessatention">Fale comigo</h1>
+    <h1 class="lessatention">{% translate "Fale comigo" %}</h1>
     <div class="empty25"></div>
 
     <ul>
         <li>
-            Telefone: ({{ user.ddd }}) {{ user.cellphone }}
+            {% translate "Telefone:" %} ({{ user.ddd }}) {{ user.cellphone }}
         </li>
         <li>
-            Email: {{ user.email }}
+            {% translate "Email:" %} {{ user.email }}
         </li>
     </ul>
 

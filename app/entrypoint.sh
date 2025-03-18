@@ -1,5 +1,9 @@
 #!/bin/bash
 
+echo "Criando arquivos de tradução"
+django-admin makemessages --locale=en --extension html,py
+django-admin compilemessages --locale=en
+
 echo "Construindo migrações"
 python manage.py makemigrations
 

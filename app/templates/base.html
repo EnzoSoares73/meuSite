@@ -1,17 +1,32 @@
 <!DOCTYPE html>
 {% load static %}
-<html lang="pt-br">
+{% load i18n %}
+
+<html lang="{% get_current_language as LANGUAGE_CODE %}">
 <head>
     <meta charset="UTF-8">
     <meta name="author" content="Enzo Soares">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="{% block description %}Blog, trabalho, programação{% endblock %}">
-    <meta name="keywords" content="{% block keywords %}Blog, trabalho, programação{% endblock %}">
-    <title>{% block title %}Site de Enzo Soares{% endblock %}</title>
+    <meta name="description" content="
 
-    <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}" media="screen"/>
-    <link rel="stylesheet" type="text/css" href="{% static "css/link.css" %}" media="screen"/>
-    <link rel="stylesheet" type="text/css" href="{% static "css/loader.css" %}" media="screen"/>
+
+
+
+            {% block description %}{% translate "Blog, trabalho, programação" %}{% endblock %}">
+    <meta name="keywords" content="
+
+
+
+
+            {% block keywords %}{% translate "Blog, trabalho, programação" %}{% endblock %}">
+    <title>{% block title %}Enzo Soares{% endblock %}</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}"
+          media="screen"/>
+    <link rel="stylesheet" type="text/css" href="{% static "css/link.css" %}"
+          media="screen"/>
+    <link rel="stylesheet" type="text/css" href="{% static "css/loader.css" %}"
+          media="screen"/>
     <link rel="shortcut icon" type="image/x-icon" href="{% static "ico/favicon.ico" %}">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
@@ -24,19 +39,53 @@
 </head>
 
 <body id="body">
-<div class="loader"></div>
-<div class="center animate-bottom">
-    <div class="flex-start container hlist">
-        {% block toolbar %}
-            <div class="item1 margin"><a href="{% url "authentication:home" %}" class="link">Home</a></div>
-            <div class="item1 margin"><a href="{% url "blog:index" %}" class="link">Blog</a></div>
-        {% endblock %}
-    </div>
+    <div class="loader"></div>
+    <div class="center animate-bottom">
+        <div class="container2">
+                <form action="{% url 'set_language' %}" method="post"
+                      id="language-form">{% csrf_token %}
+                    <input name="next" type="hidden" value="{{ redirect_to }}">
+                    <label>
+                    <div class="select">
+                        <select name="language" id="language-select"
+                                onchange="submitForm()">
+                            {% get_current_language as LANGUAGE_CODE %}
+                            {% get_available_languages as LANGUAGES %}
+                            {% get_language_info_list for LANGUAGES as languages %}
+                            {% for language in languages %}
+                                <option value="{{ language.code }}"
+                                        {% if language.code == LANGUAGE_CODE %}
+                                        selected{% endif %}>
+                                    {{ language.code }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    </label>
+                </form>
+            <div class="container hlist">
+                {% block toolbar %}
+                    <div class="item1 margin"><a href="{% url "authentication:home" %}"
+                                                 class="link">{% translate "Início" %}</a>
+                    </div>
+                    <div class="item1 margin"><a href="{% url "blog:index" %}"
+                                                 class="link">{% translate "Blog" %}</a>
+                    </div>
+                {% endblock %}
+            </div>
+        </div>
 
-    <div class="scrollbox">
-        {% block content %}
-        {% endblock %}
+        <div class="scrollbox">
+            {% block content %}
+            {% endblock %}
+        </div>
     </div>
-</div>
+    <script>
+        const form = document.getElementById('language-form')
+
+        function submitForm() {
+            form.submit()
+        }
+    </script>
 </body>
 </html>

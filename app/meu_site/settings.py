@@ -19,7 +19,7 @@ MIDDLEWARE = ['django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware', 'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware', 'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware', ]
+    'django.middleware.clickjacking.XFrameOptionsMiddleware', 'django.middleware.locale.LocaleMiddleware']
 
 ROOT_URLCONF = 'meu_site.urls'
 
@@ -37,7 +37,7 @@ DATABASES = {'default': {'ENGINE': os.environ.get('SQL_ENGINE'), 'NAME': os.envi
                          'USER': os.environ.get('SQL_USER'), 'PASSWORD': os.environ.get('SQL_PASSWORD'),
                          'HOST': os.environ.get('SQL_HOST'), 'PORT': os.environ.get('SQL_PORT'), }}
 
-AdminSite.site_header = 'Meu Sit'
+AdminSite.site_header = 'Meu Site'
 AdminSite.site_title = AdminSite.site_header
 AdminSite.site_url = None
 
@@ -62,6 +62,13 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+LANGUAGES = [
+    ('pt-br', 'Português'),
+    ('en', 'English'),
+]
+
+LOCALE_PATHS = [BASE_DIR / 'locale']
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/

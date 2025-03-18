@@ -1,5 +1,8 @@
 #!/bin/bash
 
+echo "Criando arquivos de tradução"
+django-admin compilemessages
+
 echo "Coletando arquivos estáticos"
 python manage.py collectstatic --noinput
 

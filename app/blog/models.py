@@ -1,5 +1,8 @@
 from datetime import datetime, timedelta, timezone
 
+from django.utils.translation import gettext as _, ngettext
+from django.conf import settings
+
 from django.db import models
 
 from authentication.models import User
@@ -12,29 +15,16 @@ def fixed_date():
 class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Autor')
     pub_date = models.DateTimeField('Data de publicação', default=fixed_date)
-    title = models.CharField('Título', max_length=50)
-    subtitle = models.CharField('Subtítulo', max_length=50, null=True, blank=True)
-    text = models.TextField('Texto')
 
     def __str__(self):
-        return self.title
-
-    @classmethod
-    def return_published_posts(cls, num=None):
-        lista_blog_posts = []
-        for post in Post.objects.order_by('-pub_date'):
-            if post.time_to_be_published() == 'Já publicado':
-                lista_blog_posts.append(post)
-        if num is None:
-            num = len(lista_blog_posts)
-        return lista_blog_posts[:num]
+        return f'Post #{self.id}'
 
     def time_to_be_published(self):
         if self.pub_date > datetime.now(timezone(timedelta(hours=-3))):
             temp = self.pub_date - datetime.now(timezone(timedelta(hours=-3)))
-            string = self.format_timedelta(temp)
-            return f'Será publicado em {string}'
-        return 'Já publicado'
+            time_to_be_published = self.format_timedelta(temp)
+            return _('Será publicado em %(time_to_be_published)s') % {'time_to_be_published': time_to_be_published}
+        return _('Já publicado')
 
     @staticmethod
     def format_timedelta(timedeltatobeformatted):
@@ -46,25 +36,34 @@ class Post(models.Model):
         var -= hours * (60 * 60)
         minutes = var // 60
 
-        string = f'{int(days)}'
+        string = ngettext("%(count_days)d dia",
+                          "%(count_days)d dias", int(days)) % {'count_days': int(days)}
+        string += ', '
 
-        if days == 1:
-            string = string + ' dia '
-        else:
-            string = string + ' dias, '
+        string = ngettext("%(count_hours)d hora e",
+                          "%(count_hours)d horas e", int(hours)) % {'count_hours': int(hours)}
 
-        string = string + f'{int(hours)}'
+        string += ' '
 
-        if hours == 1:
-            string = string + ' hora '
-        else:
-            string = string + ' horas e '
-
-        string = string + f'{int(minutes)}'
-
-        if minutes == 1:
-            string = string + ' minuto '
-        else:
-            string = string + ' minutos'
+        string = ngettext("%(count_minutes)d minuto",
+                          "%(count_minutes)d minutos", int(minutes)) % {'count_minutes': int(minutes)}
 
         return string
+
+
+
+class Version(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, verbose_name='Postagem')
+    title = models.CharField('Título', max_length=50)
+    subtitle = models.CharField('Subtítulo', max_length=50, null=True, blank=True)
+    text = models.TextField('Texto')
+    language_code = models.CharField('Código de Linguagem', max_length=5, choices=settings.LANGUAGES)
+
+    class Meta:
+        unique_together = ["post", "language_code"]
+        verbose_name = "Versão"
+        verbose_name_plural = "Versões"
+
+    def __str__(self):
+        return self.title
+

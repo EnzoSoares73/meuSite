@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load i18n %}
 
 {% block stylesheets %}
     <link rel="stylesheet" href="{% static "css/code.css" %}"/>
@@ -16,7 +17,7 @@
             {% endif %}
             <div class="center-horizontally" style="justify-content: space-between; padding: 0 30px">
                 <p>{{ blog.user }}</p>
-                <p>Publicado em {{ blog.pub_date }}</p>
+                <p>{% translate "Publicado em" %} {{ blog.pub_date }}</p>
             </div>
             {% autoescape off %}
                 {{ blog.text }}

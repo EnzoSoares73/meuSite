@@ -22,13 +22,15 @@ ENV VIRTUAL_ENV=/app/.venv \
     PATH="/app/.venv/bin:$PATH"
 ENV APP_HOME=/home/web/app
 
+RUN apt-get update
+RUN apt-get -y install gettext
+
 RUN mkdir -p /home/web
 
 RUN addgroup --system web && adduser --system web --ingroup web
 
 RUN mkdir $APP_HOME
 WORKDIR $APP_HOME
-
 
 COPY --from=builder ${VIRTUAL_ENV} ${VIRTUAL_ENV}
 COPY . $APP_HOME
