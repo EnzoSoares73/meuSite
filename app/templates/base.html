@@ -7,18 +7,8 @@
     <meta charset="UTF-8">
     <meta name="author" content="Enzo Soares">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="
-
-
-
-
-            {% block description %}{% translate "Blog, trabalho, programação" %}{% endblock %}">
-    <meta name="keywords" content="
-
-
-
-
-            {% block keywords %}{% translate "Blog, trabalho, programação" %}{% endblock %}">
+    <meta name="description" content="{% block description %}{% translate "Blog, trabalho, programação" %}{% endblock %}">
+    <meta name="keywords" content="{% block keywords %}{% translate "Blog, trabalho, programação" %}{% endblock %}">
     <title>{% block title %}Enzo Soares{% endblock %}</title>
 
     <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}"
@@ -42,10 +32,10 @@
     <div class="loader"></div>
     <div class="center animate-bottom">
         <div class="container2">
-                <form action="{% url 'set_language' %}" method="post"
-                      id="language-form">{% csrf_token %}
-                    <input name="next" type="hidden" value="{{ redirect_to }}">
-                    <label>
+            <form action="{% url 'set_language' %}" method="post"
+                  id="language-form">{% csrf_token %}
+                <input name="next" type="hidden" value="{{ redirect_to }}">
+                <label>
                     <div class="select">
                         <select name="language" id="language-select"
                                 onchange="submitForm()">
@@ -61,8 +51,8 @@
                             {% endfor %}
                         </select>
                     </div>
-                    </label>
-                </form>
+                </label>
+            </form>
             <div class="container hlist">
                 {% block toolbar %}
                     <div class="item1 margin"><a href="{% url "authentication:home" %}"
@@ -75,7 +65,7 @@
             </div>
         </div>
 
-        <div class="scrollbox">
+        <div class="scrollbox" id="scrollbox">
             {% block content %}
             {% endblock %}
         </div>

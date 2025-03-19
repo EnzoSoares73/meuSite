@@ -62,12 +62,19 @@ html, body {
     padding: 5px;
 }
 
+.visible-div {
+    justify-content: center;
+    flex-direction: column;
+    display: flex;
+
+}
+
 .blog-post {
     width: 90%;
     height: fit-content;
     overflow: hidden;
     line-height: 100%;
-    font-size: 20px;
+    font-size: 1vw;
     text-overflow: ellipsis;
 }
 
@@ -90,7 +97,7 @@ html, body {
 }
 
 .orange-text {
-    font-size: 60px;
+    font-size: 3vw;
     color: orange;
 }
 
@@ -100,17 +107,12 @@ html, body {
 
 .atention {
     color: dimgray;
-    font-size: 60px
+    font-size: 3vw;
 }
 
 .lessatention {
     color: dimgray;
-    font-size: 40px
-}
-
-.evenlessatention {
-    color: dimgray;
-    font-size: 30px;
+    font-size: 2vw
 }
 
 .empty100 {

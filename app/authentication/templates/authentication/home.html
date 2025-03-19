@@ -14,100 +14,129 @@
 
 {% block content %}
 
-    <div class="empty100"></div>
+    <div class="visible-div">
+        <div class="center1">
+            <h1 class="orange-text lineheight">{% translate "Olá" %}, <br><b
+                    class="atention">{% translate "eu me chamo" %} </b><b
+                    class="orange-text">{{ user.first_name }}</b></h1>
+        </div>
+        <div class="center1 typewriter" style="top: 60%">
+            <h1>{% translate "Desenvolvedor de Software" %}</h1>
+        </div>
 
-    <div class="center1">
-        <h1 class="orange-text lineheight">{% translate "Olá" %}, <br><b class="atention">{% translate "eu me chamo" %} </b><b
-                class="orange-text">{{ user.first_name }}</b></h1>
-    </div>
-    <div class="center1 typewriter" style="top: 60%">
-        <h1>{% translate "Desenvolvedor de Software" %}</h1>
-    </div>
+        <div class="empty25"></div>
 
-    <div class="empty25"></div>
-
-    <div class="center-horizontally"
-         style="cursor: pointer"
-         id="arrow">
-        <div class="orange-card circle center3" id="ARROW">
-            <svg height="20px" viewBox="0 0 20 20" version="1.1"
-                 xmlns="http://www.w3.org/2000/svg">
-                <g id="Page-1" stroke="none" stroke-width="1" fill="#ffffff"
-                   fill-rule="evenodd">
-                    <g id="Dribbble-Light-Preview"
-                       transform="translate(-140.000000, -6599.000000)"
-                       fill="#ffffff" class="st0">
-                        <g id="icons"
-                           transform="translate(56.000000, 160.000000)">
-                            <path d="M103.707257,6450.11258 C104.097581,6449.72125 104.097581,6449.0877 103.707257,6448.69736 C103.316933,6448.30603 102.685027,6448.30603 102.295701,6448.69736 L95.8578462,6455.14292 C95.5433906,6455.4582 94.9983342,6455.235 94.9983342,6454.78962 L94.9983342,6439.98385 C94.9983342,6439.43137 94.5590946,6439 94.0080486,6439 L94.0040555,6439 C93.4530095,6439 93.0017907,6439.43137 93.0017907,6439.98385 L93.0017907,6454.78962 C93.0017907,6455.235 92.4717084,6455.4582 92.1572528,6455.14292 L85.7004312,6448.66634 C85.3111053,6448.275 84.6811958,6448.275 84.2908715,6448.66634 L84.2918698,6448.66634 C83.9025438,6449.05667 83.9025438,6449.69022 84.2928681,6450.08156 L92.6034803,6458.41374 L92.6034803,6458.41374 C93.3831305,6459.19542 94.6479408,6459.19542 95.427591,6458.41374 C95.6072799,6458.23259 103.887944,6449.93143 103.707257,6450.11258"
-                                  id="arrow_down-[#360]">
-                            </path>
+        <div class="center-horizontally"
+             style="cursor: pointer"
+             id="arrow">
+            <div class="orange-card circle center3" id="ARROW">
+                <svg height="20px" viewBox="0 0 20 20" version="1.1"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <g id="Page-1" stroke="none" stroke-width="1" fill="#ffffff"
+                       fill-rule="evenodd">
+                        <g id="Dribbble-Light-Preview"
+                           transform="translate(-140.000000, -6599.000000)"
+                           fill="#ffffff" class="st0">
+                            <g id="icons"
+                               transform="translate(56.000000, 160.000000)">
+                                <path d="M103.707257,6450.11258 C104.097581,6449.72125 104.097581,6449.0877 103.707257,6448.69736 C103.316933,6448.30603 102.685027,6448.30603 102.295701,6448.69736 L95.8578462,6455.14292 C95.5433906,6455.4582 94.9983342,6455.235 94.9983342,6454.78962 L94.9983342,6439.98385 C94.9983342,6439.43137 94.5590946,6439 94.0080486,6439 L94.0040555,6439 C93.4530095,6439 93.0017907,6439.43137 93.0017907,6439.98385 L93.0017907,6454.78962 C93.0017907,6455.235 92.4717084,6455.4582 92.1572528,6455.14292 L85.7004312,6448.66634 C85.3111053,6448.275 84.6811958,6448.275 84.2908715,6448.66634 L84.2918698,6448.66634 C83.9025438,6449.05667 83.9025438,6449.69022 84.2928681,6450.08156 L92.6034803,6458.41374 L92.6034803,6458.41374 C93.3831305,6459.19542 94.6479408,6459.19542 95.427591,6458.41374 C95.6072799,6458.23259 103.887944,6449.93143 103.707257,6450.11258"
+                                      id="arrow_down-[#360]">
+                                </path>
+                            </g>
                         </g>
                     </g>
-                </g>
-            </svg>
+                </svg>
+            </div>
         </div>
+        <div class="empty100"></div>
     </div>
 
-    <div class="empty50"></div>
-
-    <h1 class="lessatention" id="arrow_destination">{% translate "Minhas últimas postagens" %}</h1>
-    <div class="container">
-        {% for post in lista_blog_posts %}
-            <div class="item1">
-                <div class="blog-title">
-                    <a href="{% url 'blog:post' post.id %}"
-                       class="link">{{ post.title }}</a>
+    <div class="visible-div"
+         id="arrow_destination">
+        <h1 class="lessatention">{% translate "Minhas últimas postagens" %}</h1>
+        <div class="container">
+            {% for post in lista_blog_posts %}
+                <div class="item1">
+                    <div class="blog-title">
+                        <a href="{% url 'blog:post' post.id %}"
+                           class="link">{{ post.title }}</a>
+                    </div>
+                    <div class="blog-post">
+                        {{ post.text }}
+                    </div>
+                    <a href="{% url 'blog:post' post.id %}" class="link"
+                       style="font-size: 20px">{% translate "Continuar a ler" %}</a>
                 </div>
+            {% empty %}
+                <div class="item1">
+                    <div class="empty100"></div>
+                    <h4>{% translate "Ainda não tem nada escrito ;-;" %}</h4>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="empty100"></div>
+
+        <h1 class="lessatention">{% translate "Sobre mim" %}</h1>
+        <div class="container">
+            <div class="item1" style="flex-grow: 3; max-width: 70%">
                 <div class="blog-post">
-                    {{ post.text }}
+                    {% autoescape off %}
+                        {{ user.about }}
+                    {% endautoescape %}
                 </div>
-                <a href="{% url 'blog:post' post.id %}" class="link"
-                   style="font-size: 20px">{%  translate "Continuar a ler" %}</a>
             </div>
-        {% empty %}
-            <div class="item1">
-                <div class="empty100"></div>
-                <h4>{% translate "Ainda não tem nada escrito ;-;" %}</h4>
-            </div>
-        {% endfor %}
-    </div>
-
-    <div class="empty100"></div>
-
-    <h1 class="lessatention">{% translate "Sobre mim" %}</h1>
-    <div class="container">
-        <div class="item1" style="flex-grow: 3; max-width: 70%">
-            <div class="blog-post">
-                {% autoescape off %}
-                    {{ user.about }}
-                {% endautoescape %}
+        </div>
+        <div class="empty100"></div>
+        <div class="center-horizontally"
+             style="cursor: pointer"
+             id="arrow2">
+            <div class="orange-card circle center3" id="ARROW">
+                <svg height="20px" viewBox="0 0 20 20" version="1.1"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <g id="Page-1" stroke="none" stroke-width="1" fill="#ffffff"
+                       fill-rule="evenodd">
+                        <g id="Dribbble-Light-Preview"
+                           transform="translate(-140.000000, -6599.000000)"
+                           fill="#ffffff" class="st0">
+                            <g id="icons"
+                               transform="translate(56.000000, 160.000000)">
+                                <path d="M103.707257,6450.11258 C104.097581,6449.72125 104.097581,6449.0877 103.707257,6448.69736 C103.316933,6448.30603 102.685027,6448.30603 102.295701,6448.69736 L95.8578462,6455.14292 C95.5433906,6455.4582 94.9983342,6455.235 94.9983342,6454.78962 L94.9983342,6439.98385 C94.9983342,6439.43137 94.5590946,6439 94.0080486,6439 L94.0040555,6439 C93.4530095,6439 93.0017907,6439.43137 93.0017907,6439.98385 L93.0017907,6454.78962 C93.0017907,6455.235 92.4717084,6455.4582 92.1572528,6455.14292 L85.7004312,6448.66634 C85.3111053,6448.275 84.6811958,6448.275 84.2908715,6448.66634 L84.2918698,6448.66634 C83.9025438,6449.05667 83.9025438,6449.69022 84.2928681,6450.08156 L92.6034803,6458.41374 L92.6034803,6458.41374 C93.3831305,6459.19542 94.6479408,6459.19542 95.427591,6458.41374 C95.6072799,6458.23259 103.887944,6449.93143 103.707257,6450.11258"
+                                      id="arrow_down-[#360]">
+                                </path>
+                            </g>
+                        </g>
+                    </g>
+                </svg>
             </div>
         </div>
     </div>
-    <div class="empty100"></div>
 
-    <h1 class="lessatention">{% translate "Fale comigo" %}</h1>
-    <div class="empty25"></div>
+    <div id="arrow_destination2">
+        <h1 class="lessatention">{% translate "Fale comigo" %}</h1>
+        <div class="empty25"></div>
 
-    <ul>
-        <li>
-            {% translate "Telefone:" %} ({{ user.ddd }}) {{ user.cellphone }}
-        </li>
-        <li>
-            {% translate "Email:" %} {{ user.email }}
-        </li>
-    </ul>
+        <ul>
+            <li>
+                {% translate "Telefone:" %} ({{ user.ddd }}) {{ user.cellphone }}
+            </li>
+            <li>
+                {% translate "Email:" %} {{ user.email }}
+            </li>
+        </ul>
 
-    <div class="empty25"></div>
+        <div class="empty25"></div>
 
-    <div class="flex-start container" style="position:relative">
-        <div class="item1 margin"><a href="mailto:{{ user.email }}"><i
-                class="fas fa-envelope-square fa-5x" style="color:orange"></i></a></div>
-        <div class="item1 margin"><a href="{{ user.linkedin }}"><i
-                class="fab fa-linkedin fa-5x" style="color:orange"></i></a></div>
-        <div class="item1 margin"><a href="{{ user.github }}"><i
-                class="fab fa-github-square fa-5x" style="color:orange"></i></a></div>
+        <div class="flex-start container" style="position:relative">
+            <div class="item1 margin"><a href="mailto:{{ user.email }}"><i
+                    class="fas fa-envelope-square fa-5x" style="color:orange"></i></a>
+            </div>
+            <div class="item1 margin"><a href="{{ user.linkedin }}"><i
+                    class="fab fa-linkedin fa-5x" style="color:orange"></i></a></div>
+            <div class="item1 margin"><a href="{{ user.github }}"><i
+                    class="fab fa-github-square fa-5x" style="color:orange"></i></a>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -116,6 +145,25 @@
             const element = document.getElementById("arrow_destination");
             element.scrollIntoView();
         });
+        document.getElementById("arrow2").addEventListener("click", (e) => {
+            e.preventDefault();
+            const element = document.getElementById("arrow_destination2");
+            element.scrollIntoView();
+        });
+
+        function adjustVisibleDivs() {
+            const container = document.getElementById('scrollbox');
+            const visibleDivs = document.querySelectorAll('.visible-div');
+
+            const visibleHeight = container.clientHeight;
+
+            visibleDivs.forEach(div => {
+                div.style.height = `${visibleHeight}px`;
+            });
+        }
+
+        adjustVisibleDivs();
+        window.addEventListener('resize', adjustVisibleDivs);
     </script>
 
 {% endblock %}

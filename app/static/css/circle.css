@@ -45,8 +45,3 @@
 .circle:hover .box span {
     transform: translate(-45%, -45%) scale(1.09);
 }
-
-.text {
-    font-size: 20px;
-    font-weight: 600;
-}
