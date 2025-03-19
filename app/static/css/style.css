@@ -66,7 +66,14 @@ html, body {
     justify-content: center;
     flex-direction: column;
     display: flex;
+    position: relative
+}
 
+.end {
+  position: absolute;
+  bottom: 1vh;
+  left: 0;
+  width: 100%;
 }
 
 .blog-post {
@@ -74,7 +81,7 @@ html, body {
     height: fit-content;
     overflow: hidden;
     line-height: 100%;
-    font-size: 1vw;
+    font-size: 1vmax;
     text-overflow: ellipsis;
 }
 
@@ -97,7 +104,7 @@ html, body {
 }
 
 .orange-text {
-    font-size: 3vw;
+    font-size: 3vmax;
     color: orange;
 }
 
@@ -107,12 +114,12 @@ html, body {
 
 .atention {
     color: dimgray;
-    font-size: 3vw;
+    font-size: 3vmax;
 }
 
 .lessatention {
     color: dimgray;
-    font-size: 2vw
+    font-size: 2vmax
 }
 
 .empty100 {
@@ -329,6 +336,12 @@ select,
     background-color: var(--select-arrow);
     clip-path: polygon(100% 0%, 0 0%, 50% 100%);
     justify-self: end;
+}
+
+h1 {
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-weight: 400;
+    font-size: 1.5vmax;
 }
 
 

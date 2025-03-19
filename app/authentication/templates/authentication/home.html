@@ -24,9 +24,7 @@
             <h1>{% translate "Desenvolvedor de Software" %}</h1>
         </div>
 
-        <div class="empty25"></div>
-
-        <div class="center-horizontally"
+        <div class="center-horizontally end"
              style="cursor: pointer"
              id="arrow">
             <div class="orange-card circle center3" id="ARROW">
@@ -65,7 +63,7 @@
                         {{ post.text }}
                     </div>
                     <a href="{% url 'blog:post' post.id %}" class="link"
-                       style="font-size: 20px">{% translate "Continuar a ler" %}</a>
+                       style="font-size: 1vmax">{% translate "Continuar a ler" %}</a>
                 </div>
             {% empty %}
                 <div class="item1">
@@ -88,7 +86,7 @@
             </div>
         </div>
         <div class="empty100"></div>
-        <div class="center-horizontally"
+        <div class="center-horizontally end"
              style="cursor: pointer"
              id="arrow2">
             <div class="orange-card circle center3" id="ARROW">
