@@ -2,13 +2,13 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-18 20:05+0000\n"
+"POT-Creation-Date: 2025-03-19 01:06+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,17 +18,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: blog/models.py:36
+#: blog/models.py:26
 #, fuzzy, python-format
 #| msgid "Será publicado em %(time_to_be_published)"
 msgid "Será publicado em %(time_to_be_published)s"
 msgstr "Will be published in %(time_to_be_published)s"
 
-#: blog/models.py:37
+#: blog/models.py:27
 msgid "Já publicado"
 msgstr "Already published"
 
-#: blog/models.py:49
+#: blog/models.py:39
 #, fuzzy, python-format
 #| msgid "%(count_days) dia"
 #| msgid_plural "%(count_days) dias"
@@ -37,7 +37,7 @@ msgid_plural "%(count_days)d dias"
 msgstr[0] "%(count_days)d day"
 msgstr[1] "%(count_days)d days"
 
-#: blog/models.py:53
+#: blog/models.py:43
 #, fuzzy, python-format
 #| msgid "%(count_hours) hora e"
 #| msgid_plural "%(count_hours) horas e"
@@ -46,7 +46,7 @@ msgid_plural "%(count_hours)d horas e"
 msgstr[0] "%(count_hours)d hour and"
 msgstr[1] "%(count_hours)d hours and"
 
-#: blog/models.py:58
+#: blog/models.py:48
 #, fuzzy, python-format
 #| msgid "%(count_minutes) minuto"
 #| msgid_plural "%(count_minutes) minutos"

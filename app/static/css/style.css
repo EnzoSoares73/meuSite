@@ -6,10 +6,10 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family: 'Poppins', sans-serif !important;
 }
 
 *, *::before, *::after {
-    font-family: 'Poppins', sans-serif !important;
     -ms-overflow-style: none;
     box-sizing: border-box;
     scroll-behavior: smooth;
@@ -279,37 +279,37 @@ html, body {
 }
 
 :root {
-  --select-border: #777;
-  --select-focus: blue;
-  --select-arrow: var(--select-border);
+    --select-border: #777;
+    --select-focus: blue;
+    --select-arrow: var(--select-border);
 }
 
 select {
-  appearance: none;
-  background-color: transparent;
-  border: none;
-  padding: 0 1em 0 0;
-  margin: 0;
-  width: 100%;
-  font-family: inherit;
-  font-size: inherit;
-  cursor: inherit;
-  line-height: inherit;
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    padding: 0 1em 0 0;
+    margin: 0;
+    width: 100%;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: inherit;
+    line-height: inherit;
     outline: none;
 }
 
 .select {
-  width: 100%;
+    width: 100%;
     min-width: 8ch;
-  max-width: 30ch;
-  border: 1px solid var(--select-border);
-  border-radius: 0.25em;
-  padding: 0.25em 0.5em;
-  font-size: 1.25rem;
-  cursor: pointer;
-  line-height: 1.1;
-  background-color: #fff;
-  background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+    max-width: 30ch;
+    border: 1px solid var(--select-border);
+    border-radius: 0.25em;
+    padding: 0.25em 0.5em;
+    font-size: 1.25rem;
+    cursor: pointer;
+    line-height: 1.1;
+    background-color: #fff;
+    background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
     display: grid;
     grid-template-areas: "select";
     align-items: center;
@@ -317,15 +317,15 @@ select {
 
 select,
 .select:after {
-  grid-area: select;
+    grid-area: select;
 }
 
 .select::after {
-  content: "";
-  width: 0.8em;
-  height: 0.5em;
-  background-color: var(--select-arrow);
-  clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+    content: "";
+    width: 0.8em;
+    height: 0.5em;
+    background-color: var(--select-arrow);
+    clip-path: polygon(100% 0%, 0 0%, 50% 100%);
     justify-self: end;
 }
 

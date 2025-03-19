@@ -1,6 +1,5 @@
 from django.contrib import admin
 
-from .forms import PostForm
 from .models import Post, Version
 
 
@@ -19,5 +18,6 @@ class PostAdmin(admin.ModelAdmin):
             'fields': ('user', 'pub_date')
         }),
     )
+
 
 admin.site.register(Post, PostAdmin)
