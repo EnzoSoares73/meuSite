@@ -16,7 +16,7 @@ def index(request):
 
 def blog_post(request, post_id):
     blog = get_object_or_404(Post, pk=post_id)
-    version = blog.version_set.all()[0]
+    version = blog.version_set.get(language_code=request.LANGUAGE_CODE)
 
     blog.text = markdown2.markdown(version.text, extras=['fenced-code-blocks'])
     blog.title = version.title
