@@ -3,7 +3,7 @@
     text-decoration: none;
     line-height: 1;
     position: relative;
-    font-size: 1.6vmax;
+    font-size: 2vmax;
     z-index: 0;
     display: inline-block;
     padding: 5px;
@@ -33,4 +33,10 @@
 .link:hover::before {
     transform: translateY(0);
     transition: transform .25s ease-out;
+}
+
+@media screen and (max-width: 800px) {
+    .link {
+        font-size: 3vmax;
+    }
 }

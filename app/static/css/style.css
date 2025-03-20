@@ -18,7 +18,7 @@ html, body {
 .center {
     border: 5px solid ghostwhite;
     background-color: ghostwhite;
-    padding: 25px 50px 75px;
+    padding: 3vmax 6vmax 9vmax;
     width: 97%;
     height: 95%;
     display: flex;
@@ -70,10 +70,10 @@ html, body {
 }
 
 .end {
-  position: absolute;
-  bottom: 1vh;
-  left: 0;
-  width: 100%;
+    position: absolute;
+    bottom: 1vh;
+    left: 0;
+    width: 100%;
 }
 
 .blog-post {
@@ -268,6 +268,12 @@ html, body {
     justify-content: center;
 }
 
+.user-publishedAt {
+    justify-content: space-between;
+    padding: 0 30px;
+    display: flex;
+}
+
 .orange-card {
     border-radius: 10px;
     background-color: orange;
@@ -342,6 +348,20 @@ h1 {
     font-family: "Segoe UI", Arial, sans-serif;
     font-weight: 400;
     font-size: 1.5vmax;
+}
+
+@media screen and (max-width: 800px) {
+    .item2 {
+        width: 90%;
+    }
+
+    .center {
+        padding: 1vmax 2vmax 3vmax;
+    }
+
+    .user-publishedAt {
+        flex-direction: column;
+    }
 }
 
 
