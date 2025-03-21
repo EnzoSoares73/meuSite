@@ -52,9 +52,9 @@
     <div class="visible-div"
          id="arrow_destination">
         <h1 class="lessatention">{% translate "Minhas últimas postagens" %}</h1>
-        <div class="container">
+        <div class="blog-list">
             {% for post in lista_blog_posts %}
-                <div class="item1">
+                <div class="blog-item">
                     <div class="blog-title">
                         <a href="{% url 'blog:post' post.id %}"
                            class="link">{{ post.title }}</a>

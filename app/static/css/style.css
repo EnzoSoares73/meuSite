@@ -137,6 +137,19 @@ html, body {
     background-color: transparent;
 }
 
+.blog-item {
+    flex: 0 1 auto;
+    max-width: 50%;
+}
+
+.blog-list {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
 .container {
     width: 100%;
     display: flex;
@@ -347,10 +360,30 @@ select,
 h1 {
     font-family: "Segoe UI", Arial, sans-serif;
     font-weight: 400;
-    font-size: 1.5vmax;
+    font-size: 2vmax;
 }
 
 @media screen and (max-width: 800px) {
+    .blog-item {
+        max-width: 100%;
+    }
+
+    .blog-list {
+        flex-direction: column;
+    }
+
+    h1 {
+        font-size: 3.5vmax;
+    }
+
+    .orange-text {
+        font-size: 4vmax;
+    }
+
+    .atention {
+        font-size: 4vmax;
+    }
+
     .item2 {
         width: 90%;
     }

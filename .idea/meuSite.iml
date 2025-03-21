@@ -19,7 +19,7 @@
       <excludeFolder url="file://$MODULE_DIR$/venv" />
       <excludeFolder url="file://$MODULE_DIR$/media" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.13 virtualenv at C:\Users\enzos\AppData\Local\pypoetry\Cache\virtualenvs\meusite-Xu83gxKH-py3.13" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.13 virtualenv at C:\Users\enzo.vieira\AppData\Local\pypoetry\Cache\virtualenvs\meusite-BKKqa0e--py3.13" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="jquery-circle-progress" level="application" />
     <orderEntry type="library" name="jquery" level="application" />

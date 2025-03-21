@@ -5,7 +5,6 @@
     margin: 0 auto; /* Gives that scrolling effect as the typing happens */
     letter-spacing: .17em; /* Adjust as needed */
     animation: typing 3s steps(30, end), blinking-cursor .5s step-end infinite;
-
 }
 
 /* The typing effect */
@@ -27,5 +26,16 @@
     }
     50% {
         border-color: orange;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .typewriter h1 {
+        white-space: unset; /* Keeps the content on a single line */
+        margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+        letter-spacing: .17em; /* Adjust as needed */
+        animation: none;
+        border-right: unset;
+        text-align: center;
     }
 }
