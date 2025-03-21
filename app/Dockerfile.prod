@@ -22,6 +22,9 @@ ENV VIRTUAL_ENV=/app/.venv
 ENV PATH="/app/.venv/bin:$PATH"
 ENV APP_HOME=/home/web/app
 
+RUN apt-get update
+RUN apt-get -y install gettext
+
 RUN mkdir -p /home/web
 
 RUN addgroup --system web && adduser --system web --ingroup web
