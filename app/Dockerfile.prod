@@ -18,6 +18,7 @@ RUN poetry install --no-root && rm -rf $POETRY_CACHE_DIR
 # The runtime image, used to just run the code provided its virtual environment
 FROM python:3.13-slim AS runtime
 
+ENV TZ="America/Sao_Paulo"
 ENV VIRTUAL_ENV=/app/.venv
 ENV PATH="/app/.venv/bin:$PATH"
 ENV APP_HOME=/home/web/app
