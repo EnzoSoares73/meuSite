@@ -11,6 +11,8 @@ class VersionInline(admin.StackedInline):
 class PostAdmin(admin.ModelAdmin):
     inlines = [VersionInline]
 
+    ordering = ['-pub_date']
+
     list_display = ('pub_date', 'time_to_be_published')
 
     fieldsets = (
