@@ -16,9 +16,9 @@ html, body {
 }
 
 .center {
-    border: 5px solid ghostwhite;
+    border: 5px solid black;
     background-color: ghostwhite;
-    padding: 3vmax 6vmax 9vmax;
+    padding: 3vmax 6vmax;
     width: 97%;
     height: 95%;
     display: flex;
