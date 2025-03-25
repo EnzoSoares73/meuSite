@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta, timezone
+from django.utils import timezone
 
 from django.utils.translation import gettext as _, ngettext
 from django.conf import settings
@@ -7,9 +7,10 @@ from django.db import models
 
 from authentication.models import User
 
+now = timezone.now()
 
 def fixed_date():
-    return datetime.now(timezone(timedelta(hours=-3))) + timedelta(hours=1)
+    return timezone.now()
 
 
 class Post(models.Model):
@@ -20,10 +21,11 @@ class Post(models.Model):
         return f'Post #{self.id}'
 
     def time_to_be_published(self):
-        if self.pub_date > datetime.now(timezone(timedelta(hours=-3))):
-            temp = self.pub_date - datetime.now(timezone(timedelta(hours=-3)))
+        if self.pub_date > timezone.now():
+            temp = self.pub_date - timezone.now()
             time_to_be_published = self.format_timedelta(temp)
-            return _('Será publicado em %(time_to_be_published)s') % {'time_to_be_published': time_to_be_published}
+            return _('Será publicado em %(time_to_be_published)s') % {
+                'time_to_be_published': time_to_be_published}
         return _('Já publicado')
 
     @staticmethod
@@ -36,20 +38,18 @@ class Post(models.Model):
         var -= hours * (60 * 60)
         minutes = var // 60
 
-        string = ngettext("%(count_days)d dia",
-                          "%(count_days)d dias", int(days)) % {'count_days': int(days)}
+        string = ngettext("%(count_days)d dia", "%(count_days)d dias", int(days)) % {'count_days': int(days)}
         string += ', '
 
-        string = ngettext("%(count_hours)d hora e",
-                          "%(count_hours)d horas e", int(hours)) % {'count_hours': int(hours)}
+        string += ngettext("%(count_hours)d hora e", "%(count_hours)d horas e", int(hours)) % {
+            'count_hours': int(hours)}
 
         string += ' '
 
-        string = ngettext("%(count_minutes)d minuto",
-                          "%(count_minutes)d minutos", int(minutes)) % {'count_minutes': int(minutes)}
+        string += ngettext("%(count_minutes)d minuto", "%(count_minutes)d minutos", int(minutes)) % {
+            'count_minutes': int(minutes)}
 
         return string
-
 
 
 class Version(models.Model):
@@ -66,4 +66,3 @@ class Version(models.Model):
 
     def __str__(self):
         return self.title
-
