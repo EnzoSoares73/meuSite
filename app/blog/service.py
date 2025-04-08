@@ -3,10 +3,9 @@ from django.utils import timezone
 
 from .models import Post, Version
 
-now = timezone.now()
-
 
 def return_published_posts(lang, num=None):
+    now = timezone.now()
     queryset = Post.objects.filter(pub_date__lt=now).order_by('-pub_date')
     if num is not None:
         queryset = queryset[:num]
